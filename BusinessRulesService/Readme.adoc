@@ -1,0 +1,14 @@
+= IoT Summit Lab 2016
+
+:Author:    Patrick Steiner
+:Email:     psteiner@redhat.com
+:Date:      23.01.2016
+
+:toc: macro
+
+toc::[]
+
+== Content
+
+This repository contains the material needed to build and run the Business Rules Service
+for the 2016 Red Hat Summit IoT Lab

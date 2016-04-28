@@ -1,0 +1,18 @@
+= IoT Summit Lab 2016
+
+:Author:    Patrick Steiner
+:Email:     psteiner@redhat.com
+:Date:      23.01.2016
+
+:toc: macro
+
+toc::[]
+
+== Content
+This repository contains the material build for the 2016 Red Hat Summit.
+
+The following sub-projects have been created
+
+* https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/Software_Sensor[Software Sensors]: a software sensor who could can be used to simulate sensor data creation.
+* https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/BusinessRulesService[Rules Service]: a service which receives data from a defined AMQ-Queue, validates those against Business Rules and drops the results in another defined AMQ-Queue
+* ...

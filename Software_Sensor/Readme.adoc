@@ -1,0 +1,14 @@
+= IoT Summit Lab 2016 - Software Sensor
+
+:Author:    Patrick Steiner
+:Email:     psteiner@redhat.com
+:Date:      23.01.2016
+
+:toc: macro
+
+toc::[]
+
+== Content
+
+This repository contains the material needed to build and run the Software Sensor
+for the 2016 Red Hat Summit IoT Lab
