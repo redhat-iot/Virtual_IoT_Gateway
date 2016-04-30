@@ -41,7 +41,7 @@ The Rules Service can be configured via the following environment variables
 | TARGET_BROKER_ADMIN_PASSWD | The password to connect to the target Messagebroker | change12_me
 |==================================
 
-== Changing the Business Rules
+== Business Rules
 The rules to validate if the received sensordata need some kind of alerting, are defined via
 a 'Decision table'.
 
@@ -64,3 +64,7 @@ The columns in this table represent the following
  * **Device Type** the 'DeviceType' this rule will need to match with. This should be simular to the 'deviceType' you have used in the 'Software Sensor' configuration.
  * **Payload** the number-range this rule will need to match with. The first number represents the lower range while the second represents the higher range.
  * **Result** this column represents the action that a rule needs to perform. In our case the 'result' part of our message will be changed to '1' or '0', according to which rule applied.
+
+== Changing Business Rules
+
+**NEEDS TO BE WRITTEN, WHEN VM IS AVAILABLE**
