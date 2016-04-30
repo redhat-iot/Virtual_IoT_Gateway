@@ -12,3 +12,55 @@ toc::[]
 
 This repository contains the material needed to build and run the Business Rules Service
 for the 2016 Red Hat Summit IoT Lab
+
+== What does this Module do?
+This Module validates data against predefined business rules and marks them according to
+the result of the rules validation
+
+=== How data is validated
+The way this Service works, can be described with the following steps
+
+1. data from one sensor reading is read from a defined Messagequeue
+2. the sensor reading is handed over to the rules execution engine which alters the data according to the result. In our case there is a field 'result' which will be changed to '0' if no rule applied or '1' if a rule applied.
+3. the altered data is placed into another defined Messagequeue
+4. repeats at step 1.
+
+== Configuration
+The Rules Service can be configured via the following environment variables
+
+[width="80%",frame="topbot",options="header"]
+|==================================
+| Variable |  Description | Default Value
+| SOURCE_AMQ_BROKER | URL of the Message Broker who provides the Messagequeue to read Sensordata from | tcp://receiver:61616
+| SOURCE_QUEUE| Name of the Messagequeue to read sensordata from | message.to.rules
+| SOURCE_BROKER_ADMIN_UID | The username to connect to the source Messagebroker | admin
+| SOURCE_BROKER_ADMIN_PASSWD | The password to connect to the source Messagebroker | change12_me
+| TARGET_AMQ_BROKER | URL of the Message Broker who provides the Messagequeue to place Sensordata to | tcp://receiver:61616
+| TARGET_QUEUE| Name of the Messagequeue to write sensordata to | message.to.datacenter
+| TARGET_BROKER_ADMIN_UID | The username to connect to the target Messagebroker | admin
+| TARGET_BROKER_ADMIN_PASSWD | The password to connect to the target Messagebroker | change12_me
+|==================================
+
+== Changing the Business Rules
+The rules to validate if the received sensordata need some kind of alerting, are defined via
+a 'Decision table'.
+
+Decision tables are a precise yet compact way to model complex rule sets
+ and their corresponding actions.
+Decision tables, like flowcharts and if-then-else and switch-case
+statements, associate conditions with actions to perform, but in many
+cases do so in a more elegant way. ( from https://en.wikipedia.org/wiki/Decision_table[wikipedia] )
+
+In our case, we will implement the Decision table as MS Excel Charts.
+
+The following image shows a possible implementation of such a table,
+with every row of the table representing one rule. The blue columns are 'conditions' and the yellow one defines an 'action'.
+
+image::images/DecisionTable.png[]
+
+The columns in this table represent the following
+
+ * **Alerting Rule** is a name for a rule. It is not required to give every rule a name, but during debugging this might become handy!
+ * **Device Type** the 'DeviceType' this rule will need to match with. This should be simular to the 'deviceType' you have used in the 'Software Sensor' configuration.
+ * **Payload** the number-range this rule will need to match with. The first number represents the lower range while the second represents the higher range.
+ * **Result** this column represents the action that a rule needs to perform. In our case the 'result' part of our message will be changed to '1' or '0', according to which rule applied.

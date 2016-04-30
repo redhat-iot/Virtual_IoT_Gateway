@@ -78,7 +78,7 @@ For your convenience we provided two simple script that you can run
 
 === runSensor.sh
 This script comes with the following environment variables
-[width="80%",frame="topbot",options="header,footer"]
+[width="80%",frame="topbot",options="header"]
 |==================================
 | Variable |  Value
 | deviceType | temperature
@@ -94,7 +94,7 @@ This script comes with the following environment variables
 
 === runHighSensor.sh
 This script comes with the following environment variables
-[width="80%",frame="topbot",options="header,footer"]
+[width="80%",frame="topbot",options="header"]
 |==================================
 | Variable |  Value
 | deviceType | temperature
