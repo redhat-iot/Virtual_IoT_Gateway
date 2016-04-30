@@ -19,6 +19,9 @@ public class App
     private static final String DEFAULT_RECEIVER		= "localhost";
     private static final String DEFAULT_BROKER_UID		= "admin";
     private static final String DEFAULT_BROKER_PASSWD 	= "change12_me";
+    private static final String DEFAULT_HIGHWATER_MARK 	= "800";
+    private static final String DEFAULT_LOWWATER_MARK 	= "200";
+
 
 	 
     public static void main( String[] args ) throws Exception
@@ -37,8 +40,10 @@ public class App
         String brokerUID 	  = System.getProperty("brokerUID", DEFAULT_BROKER_UID);
         String brokerPassword = System.getProperty("brokerPassword", DEFAULT_BROKER_PASSWD);
         
+        int highWater 	 	 = Integer.parseInt(System.getProperty("highWater", DEFAULT_HIGHWATER_MARK));
+        int lowWater 	 	 = Integer.parseInt(System.getProperty("lowWater", DEFAULT_LOWWATER_MARK));
         
-        dummy.createInitialDataSet(devType, devID, initialValue, unit); 
+        dummy.createInitialDataSet(devType, devID, initialValue, unit, highWater, lowWater); 
        	
     	producer = new MqttProducer(brokerURLMQTT, brokerUID, brokerPassword, "mqtt.receiver");
         
