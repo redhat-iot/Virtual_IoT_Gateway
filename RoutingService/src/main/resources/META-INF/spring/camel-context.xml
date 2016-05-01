@@ -14,7 +14,7 @@
   	<bean id="activemqGateway" class="org.apache.activemq.camel.component.ActiveMQComponent" >
     	<property name="connectionFactory">
       		<bean class="org.apache.activemq.ActiveMQConnectionFactory">
-        		<property name="brokerURL" value="${GATEWAY_JMS_BROKER_URL}" />
+        		<property name="brokerURL" value="${SOURCE_AMQ_BROKER}" />
         		<property name="userName" value="${SOURCE_BROKER_ADMIN_UID}"/>
         		<property name="password" value="${SOURCE_BROKER_ADMIN_PASSWD}"/>
       		</bean>

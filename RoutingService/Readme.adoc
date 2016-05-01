@@ -1,0 +1,43 @@
+= IoT Summit Lab 2016 - Routing Service
+
+:Author:    Patrick Steiner
+:Email:     psteiner@redhat.com
+:Date:      23.01.2016
+
+:toc: macro
+
+toc::[]
+
+== Content
+
+This repository contains the material needed to build and run the Business Rules Service
+for the 2016 Red Hat Summit IoT Lab
+
+== What does this Module do?
+This module is responsible for providing the logic to handle messages. Core
+tasks are
+
+  * reading messages from Messagequeues
+  * transforming messages from one dataformat ( CVS ) to another ( XML )
+  * routing messages to their next destination, based on a predefined logic
+  * routing messages to their next destination, based on the content of a message
+
+== Configuration
+The Rules Service can be configured via the following environment variables, which are similar
+to the ones defined for the https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/BusinessRulesService[Business Service].
+
+[width="80%",frame="topbot",options="header"]
+|==================================
+| Variable |  Description | Default Value
+| SOURCE_AMQ_BROKER | URL of the Message Broker who provides the Messagequeue to read Sensordata from | tcp://receiver:61616
+| SOURCE_BROKER_ADMIN_UID | The username to connect to the source Messagebroker | admin
+| SOURCE_BROKER_ADMIN_PASSWD | The password to connect to the source Messagebroker | change12_me
+|==================================
+
+== How to deploy
+For your convenience, we provided the script 'buildRouting.sh' which builds the
+'Routing Service' and deploys it to a https://www.redhat.com/en/technologies/jboss-middleware/fuse[Red Hat JBoss Fuse] instance.
+
+== The Flows
+
+**NEEDS TO BE WRITTEN, WHEN VM IS AVAILABLE**
