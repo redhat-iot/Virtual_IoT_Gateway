@@ -67,4 +67,46 @@ The columns in this table represent the following
 
 == Changing Business Rules
 
-**NEEDS TO BE WRITTEN, WHEN VM IS AVAILABLE**
+=== Opening the Rules-File
+Our business rules are written in an Spreadsheet, which you can open with any
+MS Excel compliant spreadsheet programm. For this lab environment we provide you
+with Apache OpenOffice.
+
+To open the rules spreadsheet, open JBDS as explained earlier and double-click
+the file 'DecisionTable.xls'
+
+image::images/editRules.png[]
+
+after a short time, you will be presented with the actual version of the rules
+spreadsheet
+
+image::images/emtpyRules.png[]
+
+=== Rules Syntax
+Rules are always represented in a simple
+
+```
+when
+   some condition
+then
+   some action
+
+```
+
+syntax. Luckily our rules system is capable of reading MS Excel files and compile
+the rules from the spreadsheet into rules in the above syntax.
+
+In the screenshot are four columns, which you will need to fill with content, so
+that every row representing one rule.
+
+ * *Alerting Rule* is a name for the rule in this row
+ * *Device Type* is the 'deviceType' reported by the sensor
+ * *Payload* is the data we want the rule to look for
+ * *Result* is the value we want the rule to write into the field 'result'
+ of the sensordata
+
+The following screenshow represents the rule: 'if we get a sensorreading from a
+*temperature* with the reported temperature between *0* and *15*, change the *result*
+field to *error*'
+
+image::images/sampleRule.png[]
