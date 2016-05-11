@@ -17,7 +17,7 @@ The following sub-projects have been created
 * https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/BusinessRulesService[Rules Service]: a service which receives data from a defined AMQ-Queue, validates those against Business Rules and drops the results in another defined AMQ-Queue
 * https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/RoutingService[Routing Service]: the service who receives, transforms and routes messages from one destination to the next.
 
-== Installing Red Hat JBoss Fuse
+== Lab 1 - Installing Red Hat JBoss Fuse
 In our lab environment, we do need to have a running instance of
 Red Hat JBoss Fuse. To install this, please perform the following steps
 
@@ -42,7 +42,7 @@ image::images/image1.png[]
 
 These simple steps complete the installation of Red Hat JBoss Fuse.
 
-== Starting JBoss Fuse
+== Lab 2 - Starting JBoss Fuse
 We will start the JBoss Fuse server and will leave it running in the background. Deployment
 to the server will be done "hot", which is definately not a best-practice, but
 for the sake of this lab, it's absolutely sufficient.
@@ -60,9 +60,21 @@ To start JBoss Fuse, please follow these simple steps
 
 image:images/fuse_started.png[]
 
+* To be able to process MQTT messages, Red Hat JBoss Fuse needs to install the
+'camel-mqtt' OSGi features. To to this, enter the following simple command on the
+'JBossFuse' command prompt
+
+ JBossFuse:karaf@root> features:install camel-mqtt
+
 * Minimize this shell, as we don't need it at the moment
 
 image::images/minimize_fuse.png[]
+
+== Lab 3 - Building the Running the Software Sensor
+The instructions on building and running the *Software Sensor* are located https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/Software_Sensor[here].
+
+== Lab 4 - Building and Running the first Messageflow
+The instructions on building and running the first Flow are located https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/RoutingService[here].
 
 == Starting the development tooling
 For our development activities, we will be using JBoss Developer Studio V8.1 (JBDS), an

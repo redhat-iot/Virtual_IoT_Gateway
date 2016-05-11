@@ -157,5 +157,72 @@ Please do not forget to save your changes, as this will complete this exercise.
 
 image:images/saveAll.png[]
 
+=== Verify that the Camel route has been deployed
+We can verify the deployment of our first Flow by doing the following steps
+
+ * Open a browser
+
+image:images/startFirefox.png[]
+
+ * Open the admin console of JBoss Fuse by browsing to it's URL
+
+image:images/startHawtio.png[]
+
+ * Enter the *admin* Username and *change12_me* as Password and click the *Log in* button
+
+image:images/enterCredentials.png[]
+
+ * Go to the *Logs* panel
+
+image:images/openLogs.png[]
+
+ * Look for the corresponding messages in the logs
+
+image:images/viewLogs.png[]
+
+=== Sending a few test messages
+By now you should have the following elements of the IoT environment ready build
+
+ * a software sensor to simulate data
+ * a route to receive data via MQTT and forward in a different messageformat via AMQP
+
+we can easily verify this, by doing the following:
+
+ * Start the provided script *runHighSensor.sh*, which will send one message
+
+ [demo-user@localhost IoT_Summit_Lab]$ ./runHighSensor.sh
+ Starting the producer to send messages
+ Sending '70,0'
+
+ * Open the *ActiveMQ* panel in the JBoss Fuse admin page
+
+image:images/openActiveMQView.png[]
+
+ * Click on the 'Topic' tree and verify the number for "Enqueue" and "Dequeue" for
+ our topic *iotdemo.temperature.4711*. This entry will tell you how many messages
+ have been received on this MQTT-Topic and how many of these have been read from
+ the Topic.
+
+image:images/viewMQTTTopics.png[]
+
+ * As our Flow was designed to take a message from the MQTT-Topic and put it into an AMQP
+ queue, we should find our *dequeued* message in a *Queue*. Therefor click on *Queue* and
+ verify the number of *Enqueued* messages in the *message.to.rules* queue.
+
+image:images/viewAMQP.png[]
+
+ * Last, but not least, we can verify if the new message is really transformed
+ from CSV to XML. To do this, click on the queue-name in the tree-view and on *Browse*
+
+image:images/viewMessage.png[]
+
+ * Select the message you want to see, we should only have one!
+
+image:images/viewMessageList.png[]
+
+ * Be Happy!
+
+image:images/messageContent.png[]
+
 
 == Flow 2 - Filter and Forward to Backend
