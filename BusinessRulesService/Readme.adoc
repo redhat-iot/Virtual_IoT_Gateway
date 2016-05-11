@@ -1,4 +1,4 @@
-= IoT Summit Lab 2016
+= IoT Summit Lab 2016 - Business Rules Service
 
 :Author:    Patrick Steiner
 :Email:     psteiner@redhat.com

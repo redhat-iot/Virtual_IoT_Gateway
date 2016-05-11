@@ -1,8 +1,8 @@
-= IoT Summit Lab 2016
+= IoT Summit Lab 2016 - Starting the Lab
 
 :Author:    Patrick Steiner
 :Email:     psteiner@redhat.com
-:Date:      23.01.2016
+:Date:      11.05.2016
 
 :toc: macro
 
@@ -21,22 +21,48 @@ The following sub-projects have been created
 In our lab environment, we do need to have a running instance of
 Red Hat JBoss Fuse. To install this, please perform the following steps
 
-1. Login to you lab-environment with
+* Login to you lab-environment with
 
  username = 'demo-user'
  password = 'change12_me'
 
-2. Open a terminal
+* Open a terminal
 
 image::images/image1.png[]
 
-3. In the shell perform the following steps
+* In the shell perform the following steps
 
  [demo-user@localhost ~]$ cd
  [demo-user@localhost ~]$ unzip jboss-fuse-full-6.2.1.redhat-084.zip
  [demo-user@localhost ~]$ ln -s jboss-fuse-6.2.1.redhat-084 fuse
 
+* Close the shell
+
+ [demo-user@localhost ~]$ exit
+
 These simple steps complete the installation of Red Hat JBoss Fuse.
+
+== Starting JBoss Fuse
+We will start the JBoss Fuse server and will leave it running in the background. Deployment
+to the server will be done "hot", which is definately not a best-practice, but
+for the sake of this lab, it's absolutely sufficient.
+
+To start JBoss Fuse, please follow these simple steps
+
+ * Open a new shell, as described in the previous section
+ * Enter the following commands
+
+  [demo-user@localhost ~]$ cd
+  [demo-user@localhost ~]$ cd fuse/
+  [demo-user@localhost fuse]$ ./bin/fuse
+
+* Wait for the Red Hat JBoss Fuse to complete the start procedure
+
+image:images/fuse_started.png[]
+
+* Minimize this shell, as we don't need it at the moment
+
+image::images/minimize_fuse.png[]
 
 == Starting the development tooling
 For our development activities, we will be using JBoss Developer Studio V8.1 (JBDS), an
