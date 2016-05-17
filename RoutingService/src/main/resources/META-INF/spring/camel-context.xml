@@ -8,7 +8,7 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
 	<!--Helper Bean to extract data from MQTT Topic and and to Message in csv values  -->
-  	<bean id="myHelper" class="com.redhat.demo.iotdemo.smart_gateway.MyHelper" />
+  	<bean id="myHelper" class="com.redhat.demo.iotdemo.routingService.MyHelper" />
     
   	<!--Connection to activeMQ Broker running on same system  -->
   	<bean id="activemqGateway" class="org.apache.activemq.camel.component.ActiveMQComponent" >
@@ -33,7 +33,6 @@
     <from uri="mqtt:mqtt.temp.receiver?host=tcp://localhost:1883&amp;subscribeTopicNames=iotdemo/#/#&amp;userName=admin&amp;password=change12_me"/>
     <bean ref="myHelper" method="enhanceMessage" beanType="com.redhat.demo.routingService.MyHelper"/>
     <unmarshal ref="bindyDataFormat"/>
-    <convertBodyTo type="java.lang.String"/>
     <to uri="activemqGateway:queue:message.to.rules"/>
   </route>
 </camelContext>
