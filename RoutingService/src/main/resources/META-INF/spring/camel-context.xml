@@ -30,15 +30,11 @@
     <bindy type="Csv" classType="com.redhat.demo.iotdemo.routingService.Dataset" id="bindyDataFormat"/>
   </dataFormats>
   <route id="messagesFromSensor">
-<<<<<<< HEAD
-    <from uri="direct:from"/>
-    <to uri="direct:to"/>
-=======
     <from uri="mqtt:mqtt.temp.receiver?host=tcp://localhost:1883&amp;subscribeTopicNames=iotdemo/#/#&amp;userName=admin&amp;password=change12_me"/>
     <bean ref="myHelper" method="enhanceMessage" beanType="com.redhat.demo.routingService.MyHelper"/>
     <unmarshal ref="bindyDataFormat"/>
+    <convertBodyTo type="java.lang.String"/>
     <to uri="activemqGateway:queue:message.to.rules"/>
->>>>>>> ee01033033c564a7f59f0624dcaa91aaa3b81f3a
   </route>
 </camelContext>
 
