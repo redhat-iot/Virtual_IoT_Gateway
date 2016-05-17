@@ -90,6 +90,8 @@ And again, run the following commands
  [demo-user@iotlab ~]$ source /etc/profile.d/maven.sh
 
 == Getting the Red Hat Products
+
+=== Red Hat JBoss Fuse
 As for the writing of these instructions, Red Hat JBoss Fuse has been released
 in Version 6.2.1
 
@@ -101,6 +103,62 @@ After downloading it, please place the file 'jboss-fuse-full-6.2.1.redhat-084.zi
 into the home-directory of your user. In my case the command required is
 
  [demo-user@iotlab ~]$ mv Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user
+
+=== Red Hat JBoss Developer Studio
+Red Hat JBoss Developer Studio ( JBDS ) in the Eclipse based tooling
+for all JBoss products. It's capabilities can be installed onto an
+existing Eclipse or already bundled.
+
+For this setup, we will download JBDS from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=jbossdeveloperstudio&version=8.1.0[Red Hat Customer Portal],
+but please make sure to download the V8.1
+
+image:images/download_jbds.png[]
+
+Once the download completed, you can run the installer via
+
+ [demo-user@iotlab ~]$ java -jar Downloads/jboss-devstudio-8.1.0.GA-installer-standalone.jar
+
+For simplicity, accept all defaults and let the installer add an icon onto the desktop
+
+image:images/install_jbds.png[]
+
+Run JBDS after the installation completed
+
+image:images/start_jbds.png[]
+
+You can, again, accept the defaults for the proposed Eclipse 'workspace'.
+
+It is up to you, if you want to let Red Hat receive usage statistics or not.
+
+image:images/start_workspace.png[]
+
+Once JBDS has fully started and the 'workspace' is shown, you will have to
+switch to the panel to install additional software into JBDS
+
+image:images/jbds_software_updates.png[]
+
+Select *JBoss Fuse Development* for installation.
+
+image:images/jbds_install_tooling.png[]
+
+After installing the Tooling and restarting JBDS, you can import the source
+projects for the labs, to do so, perform the following steps
+
+ * Open the 'Import' wizard of JBDS
+
+image:images/import_1.png[]
+
+ * Select 'Existing Maven Project' as import source
+
+image:images/import_2.png[]
+
+ * Select the '/home/demo-user/IoT_Summit_Lab/RoutingService' directory
+
+image:images/import_3.png[]
+
+ * Have patience or a cup of coffee, as JBDS downloads a lot of Maven dependencies for you.
+
+ * Re-Do the same steps for the project in '/home/demo-user/IoT_Summit_Lab/BusinessRulesService'
 
 == Getting the Lab-Code and instructions
 To clone the IoT-Lab exercises into your system, please perform the following
