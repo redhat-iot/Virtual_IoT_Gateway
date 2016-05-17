@@ -17,6 +17,10 @@ The following sub-projects have been created
 * https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/BusinessRulesService[Rules Service]: a service which receives data from a defined AMQ-Queue, validates those against Business Rules and drops the results in another defined AMQ-Queue
 * https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/RoutingService[Routing Service]: the service who receives, transforms and routes messages from one destination to the next.
 
+== Lab 0 - Preparing the Lab Environment
+If you should do these labs on an environment, which was not prepared for it,
+please follow the https://github.com/PatrickSteiner/IoT_Summit_Lab/blob/master/BuildVM.adoc[instructions] on how to setup a lab environment.
+
 == Lab 1 - Installing Red Hat JBoss Fuse
 In our lab environment, we do need to have a running instance of
 Red Hat JBoss Fuse. To install this, please perform the following steps
