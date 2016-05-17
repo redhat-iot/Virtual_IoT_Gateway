@@ -110,3 +110,47 @@ The following screenshow represents the rule: 'if we get a sensorreading from a
 field to *error*'
 
 image::images/sampleRule.png[]
+
+== Building and Running the *Business Rules Service*
+Now that we have added a few rules to our decision table, we only need to build
+a new version of the service and start it.
+
+As of now, you should have a terminal open, in which you started Red Hat JBoss Fuse
+and another terminal in which you did build and deployed the Routing Service.
+
+You can use the same terminal again, to build and start the *Business Rules Service*
+
+To do so, enter the following commands in your terminal session
+
+ [demo-user@localhost IoT_Summit_Lab]$ cd
+ [demo-user@localhost ~]$ cd IoT_Summit_Lab/
+ [demo-user@localhost IoT_Summit_Lab]$ ./runRoutingService.sh
+ < removed a output >
+ AMQ-Broker tcp://localhost:61616 ready to work!
+
+== Sending a few test messages
+As during the previous lab, we will try this service by sending a test mesasge
+via the *Software Sensor* to our setup. The following should happen.
+
+ 1. *Software Sensor* sends a message with a high value via MQTT
+ 2. *Routing Service* will pick it up, transform the message and send it
+ to an AMQP message queue.
+ 3. *Business Rules Service* will take the transformed message from the queue
+ and will put it in another AMQP message queue, but only if a business rule
+ told him to.
+
+To perform this test, perform the following steps
+
+ * Open a new terminal windows
+
+image:images/openTerminal.png[]
+
+ * Start the provided script *runHighSensor.sh*, which will send one message
+
+ [demo-user@localhost Desktop]$ cd
+ [demo-user@localhost ~]$ cd IoT_Summit_Lab/
+ [demo-user@localhost IoT_Summit_Lab]$ ./runHighSensor.sh
+ Starting the producer to send messages
+ Sending '70,0'
+
+ * 
