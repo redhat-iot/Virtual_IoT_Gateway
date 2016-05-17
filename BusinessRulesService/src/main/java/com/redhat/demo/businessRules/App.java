@@ -44,11 +44,7 @@ public class App
     	System.out.println(" Check if needed AMQ-Broker are already available");
     	AMQTester tester = new AMQTester(); 
     	tester.waitForBroker(sourceAMQBroker);
-    	tester.waitForBroker(targetAMQBroker);
-    	
-    	System.out.println(" AMQ-Broker " + sourceAMQBroker + " ready to work! ");
-    	System.out.println(" AMQ-Broker " + targetAMQBroker + " ready to work! ");
-    	
+    	tester.waitForBroker(targetAMQBroker); 	
     	
 		Consumer consumer = new Consumer(sourceBrokerUID, sourceBrokerPassword, sourceQueue, sourceAMQBroker);
 		
