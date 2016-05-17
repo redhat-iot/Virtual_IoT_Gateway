@@ -1,0 +1,118 @@
+= IoT Summit Lab 2016 - Building a VM
+
+:Author:    Patrick Steiner
+:Email:     psteiner@redhat.com
+:Date:      17.05.2016
+
+:toc: macro
+
+toc::[]
+
+== Scope
+This document is intended for those people who would like to perform the
+IoT-Lab, as described in this repository.
+
+The instructions are based on Red Hat Enterprise Linux V7.2 (RHEL) but can easily be
+re-done on other Operatingsystems, if you have the basic skills to install
+software, etc.
+
+In the course of this document, we will assume that you will run RHEL in a VM, but
+bare metal deployments will work as well.
+
+== Pre-Requisite
+You will need to install a RHEL V7.2 with
+
+ * 2 CPUs
+ * 4 GB RAM ( more is always good )
+ * 20GB Storage with
+
+During the installation please select to install the server with GUI.
+
+image:images/install_gui.png[]
+
+For simplicity we will use the default setting for the disk partitions.
+
+image:images/install_hd.png[]
+
+Also make sure that your network is activated.
+
+image:images/install_network.png[]
+
+I usually create a user called "demo-user" with admin rights, but you can call
+your user whatever you want.
+
+image:images/install_user.png[]
+
+After completing the install precedure, please make sure to register your RHEL
+installation and bring it to the most current level via
+
+ yum upgrade
+
+== Additional Installations
+To be able to run the demo-labs, you will need the following products/packages
+installed:
+
+=== Additional RHEL packages
+To install additional RHEL packages, please perform the following steps
+
+ [demo-user@iotlab Desktop]$ sudo subscription-manager repos --enable="rhel-7-server-rpms"  --enable="rhel-7-server-extras-rpms"  --enable="rhel-7-server-ose-3.0-rpms"
+ [demo-user@iotlab Desktop]$ sudo yum -y install java-1.7.0-openjdk-devel wget git unzip ansible docker
+ [sudo] password for demo-user:
+
+To make 'docker' available to non-'root' user, please perform the following steps
+
+ [demo-user@iotlab Desktop]$ sudo groupadd docker
+ [demo-user@iotlab Desktop]$ sudo usermod -g docker demo-user
+ [demo-user@iotlab Desktop]$ sudo systemctl start docker
+ [demo-user@iotlab Desktop]$ sudo systemctl enable docker
+
+ === Installing Maven
+ For the builds to work automatically, we need to install Apache Maven. Please do
+ so by performing the following steps
+
+  [demo-user@iotlab Desktop]$ cd
+  [demo-user@iotlab ~]$ wget http://mirror.softaculous.com/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
+--2016-05-17 17:17:03--  http://mirror.softaculous.com/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
+  [demo-user@iotlab ~]$ unzip apache-maven-3.3.9-bin.zip
+  [demo-user@iotlab ~]$ sudo ln -s /opt/maven/bin/mvn /usr/bin/mvn
+
+Now please create a file called '/etc/profile.d/maven.sh' with the following content
+
+ #!/bin/bash
+ MAVEN_HOME=/opt/maven
+ PATH=$MAVEN_HOME/bin:$PATH
+ export PATH MAVEN_HOME
+ export CLASSPATH=.
+
+And again, run the following commands
+
+ [demo-user@iotlab ~]$ sudo chmod +x /etc/profile.d/maven.sh
+ [demo-user@iotlab ~]$ source /etc/profile.d/maven.sh
+
+== Getting the Red Hat Products
+As for the writing of these instructions, Red Hat JBoss Fuse has been released
+in Version 6.2.1
+
+Please download this version from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal]
+
+image:images/download_fuse.png[]
+
+After downloading it, please place the file 'jboss-fuse-full-6.2.1.redhat-084.zip'
+into the home-directory of your user. In my case the command required is
+
+ [demo-user@iotlab ~]$ mv Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user
+
+== Getting the Lab-Code and instructions
+To clone the IoT-Lab exercises into your system, please perform the following
+steps
+
+ [demo-user@iotlab ~]$ cd
+ [demo-user@iotlab ~]$ git clone https://github.com/PatrickSteiner/IoT_Summit_Lab
+ Cloning into 'IoT_Summit_Lab'...
+ remote: Counting objects: 320, done.
+ remote: Compressing objects: 100% (76/76), done.
+ remote: Total 320 (delta 25), reused 0 (delta 0), pack-reused 218
+ Receiving objects: 100% (320/320), 2.93 MiB | 647.00 KiB/s, done.
+ Resolving deltas: 100% (81/81), done.
+
+ Now you are ready to proceed with the Labs! Have fun!
