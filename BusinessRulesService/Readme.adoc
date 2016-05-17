@@ -105,9 +105,13 @@ that every row representing one rule.
  * *Result* is the value we want the rule to write into the field 'result'
  of the sensordata
 
-The following screenshow represents the rule: 'if we get a sensorreading from a
-*temperature* with the reported temperature between *0* and *15*, change the *result*
-field to *error*'
+The following screenshow represents two rules, which you should add to your
+decision table as well.
+
+ 1. Rule: 'if we get a sensorreading from a *temperature* with the reported temperature between *0* and *60*, change the *result*
+ field to *0*'
+ 2. Rule: 'if we get a sensorreading from a *temperature* with the reported temperature between *61* and *100*, change the *result*
+ field to *1*'
 
 image::images/sampleRule.png[]
 
@@ -153,4 +157,4 @@ image:images/openTerminal.png[]
  Starting the producer to send messages
  Sending '70,0'
 
- * 
+ *
