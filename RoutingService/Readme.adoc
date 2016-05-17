@@ -153,9 +153,45 @@ the 'direct:to' node and change the properties as shown in the image below.
 
 image:images/configureSend.png[]
 
+==== One more thing
+To show the flexibility of building Camel routes, we will introduce one more
+step to the route, which we created visually so far. This time we will change
+the underlying Spring-XML file.
+
+To access this, you just have to change the view-format or our route by clicking
+the "source" - tab
+
+image:images/changeView.png[]
+
+You will be presented with the XML representation of our route, which includes
+some preparation and definition steps and at the end, our route
+
+ <route id="messagesFromSensor">
+    <from uri="mqtt:mqtt.temp.receiver?host=tcp://localhost:1883&amp;subscribeTopicNames=iotdemo/#/#&amp;userName=admin&amp;password=change12_me"/>
+    <bean ref="myHelper" method="enhanceMessage" beanType="com.redhat.demo.routingService.MyHelper"/>
+    <unmarshal ref="bindyDataFormat"/>
+    <to uri="activemqGateway:queue:message.to.rules"/>
+ </route>
+
+We will now have to add one more transformation, which will transform the message
+from it's current XML-Document format into a String. This will make later processing
+easier.
+
+Please locate the following two lines
+
+ <unmarshal ref="bindyDataFormat"/>
+ <to uri="activemqGateway:queue:message.to.rules"/>
+
+now add the transformation inbetween those
+
+ <unmarshal ref="bindyDataFormat"/>
+ <convertBodyTo type="java.lang.String"/>
+ <to uri="activemqGateway:queue:message.to.rules"/>
+
 Please do not forget to save your changes, as this will complete this exercise.
 
 image:images/saveAll.png[]
+
 
 === Verify that the Camel route has been deployed
 We can verify the deployment of our first Flow by doing the following steps
