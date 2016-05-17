@@ -76,6 +76,9 @@ The instructions on building and running the *Software Sensor* are located https
 == Lab 4 - Building and Running the first Messageflow
 The instructions on building and running the first Flow are located https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/RoutingService[here].
 
+== Lab 5 - Building and Running the Business Rules Service
+The instructions on building and running the Business Rules Service are located https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/BusinessRulesService[here].
+
 == Starting the development tooling
 For our development activities, we will be using JBoss Developer Studio V8.1 (JBDS), an
 Eclipse based tooling.
