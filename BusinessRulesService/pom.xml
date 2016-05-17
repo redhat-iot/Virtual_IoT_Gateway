@@ -127,7 +127,7 @@
 			      <archive>
 			      <manifest>
 			        <addClasspath>true</addClasspath>
-			        <mainClass>com.redhat.demo.iot.datacenter.monitor.App</mainClass>
+			        <mainClass>com.redhat.demo.businessRules.App</mainClass>
 			      </manifest>
 			      </archive>
 			

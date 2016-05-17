@@ -1,6 +1,6 @@
 package com.redhat.demo.iot.datacenter.monitor
  
-import com.redhat.demo.iot.datacenter.monitor.DataSet;
+import com.redhat.demo.businessRules.DataSet;
 
 rule "VoltageTooLow"
 	lock-on-active true
