@@ -160,6 +160,19 @@ image:images/import_3.png[]
 
  * Re-Do the same steps for the project in '/home/demo-user/IoT_Summit_Lab/BusinessRulesService'
 
+== Installing LibreOffice
+For the MS Excel based decision table, we need some kind of spreadsheet
+application. We have chosen to go for *LibreOffice* but any other application
+capable of reading and writing MS Excel is OK.
+
+To install *LibreOffice* please perform the following commands
+
+ [demo-user@iotlab IoT_Summit_Lab]$ cd
+ [demo-user@iotlab ~]$ wget http://download.documentfoundation.org/libreoffice/stable/5.1.3/rpm/x86_64/LibreOffice_5.1.3_Linux_x86-64_rpm.tar.gz
+ [demo-user@iotlab ~]$ tar -xvf LibreOffice_5.1.3_Linux_x86-64_rpm.tar.gz
+ [demo-user@iotlab ~]$ cd LibreOffice_5.1.3.2_Linux_x86-64_rpm/RPMS/
+ [demo-user@iotlab RPMS]$ sudo yum localinstall *.rpm
+
 == Getting the Lab-Code and instructions
 To clone the IoT-Lab exercises into your system, please perform the following
 steps
