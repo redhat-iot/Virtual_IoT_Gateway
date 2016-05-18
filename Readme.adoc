@@ -74,7 +74,7 @@ image:images/fuse_started.png[]
 
 image::images/minimize_fuse.png[]
 
-== Lab 3 - Building the Running the Software Sensor
+== Lab 3 - Building and Running the Software Sensor
 The instructions on building and running the *Software Sensor* are located https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/Software_Sensor[here].
 
 == Lab 4 - Building and Running the first Messageflow
