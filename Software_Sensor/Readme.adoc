@@ -73,8 +73,25 @@ The Software Sensor can be configured via the following environment variables
 | lowWater | The threshold to decrease the generated value with '1' | 200
 |==================================
 
+== Building the Software Sensor
+To be able to run the *Software Sensor* you will have to build
+it from it's source files.
+
+To do so, please open a terminal and perform the following commands
+
+ [demo-user@iotlab Desktop]$ cd
+ [demo-user@iotlab ~]$ cd IoT_Summit_Lab/
+ [demo-user@iotlab IoT_Summit_Lab]$ cd Software_Sensor/
+ [demo-user@iotlab Software_Sensor]$ mvn clean install
+
+Once the build procedure has completed, you are ready to proceed.
+
 == Running the Software Sensor
-For your convenience we provided two simple script that you can run
+For your convenience we provided two simple script that you can use
+start the *Software Sensor*.
+
+Note: Please be aware, that running them now will produce to results, as
+we still need to complete the other steps of this lab.
 
 === runSensor.sh
 This script comes with the following environment variables

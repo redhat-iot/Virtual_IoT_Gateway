@@ -34,14 +34,27 @@ to the ones defined for the https://github.com/PatrickSteiner/IoT_Summit_Lab/tre
 | SOURCE_BROKER_ADMIN_PASSWD | The password to connect to the source Messagebroker | change12_me
 |==================================
 
-== How to deploy
-For your convenience, we provided the script 'buildRouting.sh' which builds the
-'Routing Service' and deploys it to a https://www.redhat.com/en/technologies/jboss-middleware/fuse[Red Hat JBoss Fuse] instance.
-
 == Flow 1 - Receive, Transform and Forward
 
 For your convenience we provided code-frames for you to be able to
 develop the JBoss Fuse logic.
+
+=== Starting the development tooling
+For our development activities, we will be using JBoss Developer Studio V8.1 (JBDS), an
+Eclipse based tooling.
+
+To start JBDS, double-click the provided icon on the dashboard.
+
+image::images/image2.png[]
+
+In the 'Project Explorer' Eclipse view, you will see our two project which we
+will be using in later stages of our lab.
+
+ * 'businessRulesService' for our Rules Service
+ * 'routingService' for our Routing Service
+
+image::images/image3.png[]
+
 
 === Opening the Flow Editor
 
@@ -132,7 +145,7 @@ To do so, select the 'bean myHelper' and add the 'Unmarshal' functionality.
 
 image:images/addMarshall.png[]
 
-In the properties pane of the newly created Node, please add the *ref* the 'bindyDataFormat'.
+In the properties pane of the newly created Node, please change the `Ref` property to `bindyDataFormat`.
 
 image:images/setMarshall.png[]
 
@@ -140,16 +153,16 @@ This tells JBoss Fuse which functionality to use to transform the Java Object to
 
 ==== Adding the final send to the flow
 All that is left to do is to change our logic to send the created XML to our AMQP
-Messagequeue. To do this, select the 'unmarshal' Node and drag the small black arrow to
+Messagequeue. To do this, select the `unmarshal` Node and drag the small black arrow to
 the 'direct:to' node.
 
 image:images/connectMarshallToEnd.png[]
 
 This will take care that the XML message will be transported from the 'unmarshall' step
-to the 'direct:to' node, so you will not have to worry about the flow of the message itself.
+to the `direct:to` node, so you will not have to worry about the flow of the message itself.
 
 Last thing to do is to configure the sending node, to do this please select
-the 'direct:to' node and change the properties as shown in the image below.
+the `direct:to` node and change the property `Uri` to `activemqGateway:queue:message.to.rules`  as shown in the image below.
 
 image:images/configureSend.png[]
 
@@ -192,6 +205,24 @@ Please do not forget to save your changes, as this will complete this exercise.
 
 image:images/saveAll.png[]
 
+=== Building and deploying the route
+For your convenience, we created a script which will
+
+ * build the Red Hat JBoss Fuse project
+ * deploy it to our running JBoss Fuse Instance
+
+To build and deploy, all you need to do is perform the following steps
+
+* open a terminal
+
+image:images/openTerminal.png[]
+
+ * perform the following commands
+
+ [demo-user@iotlab Software_Sensor]$ cd
+ [demo-user@iotlab ~]$ cd IoT_Summit_Lab/
+ [demo-user@iotlab IoT_Summit_Lab]$ ./runRoutingService.sh
+
 
 === Verify that the Camel route has been deployed
 We can verify the deployment of our first Flow by doing the following steps
@@ -200,7 +231,7 @@ We can verify the deployment of our first Flow by doing the following steps
 
 image:images/startFirefox.png[]
 
- * Open the admin console of JBoss Fuse by browsing to it's URL
+ * Open the admin console of Red Hat JBoss Fuse by browsing to it's URL
 
 image:images/startHawtio.png[]
 
@@ -216,7 +247,7 @@ image:images/openLogs.png[]
 
 image:images/viewLogs.png[]
 
-=== Sending a few test messages
+=== Sending a test message
 By now you should have the following elements of the IoT environment ready build
 
  * a software sensor to simulate data
@@ -224,7 +255,8 @@ By now you should have the following elements of the IoT environment ready build
 
 we can easily verify this, by doing the following:
 
- * Start the provided script *runHighSensor.sh*, which will send one message
+ * Start the provided script *runHighSensor.sh*,  which will send one message. You
+ can use the same terminal windows from which you initiated the build and deploy.
 
  [demo-user@localhost IoT_Summit_Lab]$ ./runHighSensor.sh
  Starting the producer to send messages
