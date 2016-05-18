@@ -56,15 +56,8 @@ installed:
 To install additional RHEL packages, please perform the following steps
 
  [demo-user@iotlab Desktop]$ sudo subscription-manager repos --enable="rhel-7-server-rpms"  --enable="rhel-7-server-extras-rpms"  --enable="rhel-7-server-ose-3.0-rpms"
- [demo-user@iotlab Desktop]$ sudo yum -y install java-1.7.0-openjdk-devel wget git unzip ansible docker
+ [demo-user@iotlab Desktop]$ sudo yum -y install java-1.7.0-openjdk-devel wget git unzip
  [sudo] password for demo-user:
-
-To make 'docker' available to non-'root' user, please perform the following steps
-
- [demo-user@iotlab Desktop]$ sudo groupadd docker
- [demo-user@iotlab Desktop]$ sudo usermod -g docker demo-user
- [demo-user@iotlab Desktop]$ sudo systemctl start docker
- [demo-user@iotlab Desktop]$ sudo systemctl enable docker
 
  === Installing Maven
  For the builds to work automatically, we need to install Apache Maven. Please do
