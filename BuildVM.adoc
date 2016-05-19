@@ -65,6 +65,10 @@ To install additional RHEL packages, please perform the following steps
  [demo-user@iotlab Desktop]$ sudo yum -y install java-1.7.0-openjdk-devel wget git unzip
  [sudo] password for demo-user:
 
+=== Clone the IoT_Summit_repo
+ Download the Lab codebased by cloning the repository:
+ `git clone https://github.com/PatrickSteiner/IoT_Summit_Lab`
+
  === Installing Maven
  For the builds to work automatically, we need to install Apache Maven. Please do
  so by performing the following steps
