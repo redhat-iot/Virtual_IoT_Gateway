@@ -44,7 +44,11 @@ your user whatever you want.
 image:images/install_user.png[]
 
 After completing the install precedure, register your RHEL installation
-# subscription-manager register --username=rhnuser --password=rhnpasswd
+
+'''
+[demo-user@iotlab Desktop]$ sudo subscription-manager register --username=rhnuser --password=rhnpasswd
+'''
+
 
 Upgrade the RHEL installation
  yum upgrade
