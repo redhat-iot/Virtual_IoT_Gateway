@@ -43,15 +43,12 @@ your user whatever you want.
 
 image:images/install_user.png[]
 
-After completing the install precedure, register your RHEL installation
+After completing the install precedure, register and upgrade your RHEL installation
 
-'''
+```
 [demo-user@iotlab Desktop]$ sudo subscription-manager register --username=rhnuser --password=rhnpasswd
-'''
-
-
-Upgrade the RHEL installation
  yum upgrade
+ ```
 
 == Additional Installations
 To be able to run the demo-labs, you will need the following products/packages
