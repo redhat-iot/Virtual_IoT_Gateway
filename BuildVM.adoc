@@ -43,9 +43,10 @@ your user whatever you want.
 
 image:images/install_user.png[]
 
-After completing the install precedure, please make sure to register your RHEL
-installation and bring it to the most current level via
+After completing the install precedure, register your RHEL installation
+# subscription-manager register --username=rhnuser --password=rhnpasswd
 
+Upgrade the RHEL installation
  yum upgrade
 
 == Additional Installations
