@@ -48,8 +48,9 @@ After completing the install precedure, register and upgrade your RHEL installat
 ```
 [demo-user@iotlab Desktop]$ sudo subscription-manager register --username=rhnuser --password=rhnpasswd
  [demo-user@iotlab Desktop]$ sudo yum upgrade
+ 
  ```
-
+ 
 == Additional Installations
 To be able to run the demo-labs, you will need the following products/packages
 installed:
