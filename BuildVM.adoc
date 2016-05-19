@@ -61,7 +61,7 @@ installed:
 === Additional RHEL packages
 To install additional RHEL packages, please perform the following steps
 
- [demo-user@iotlab Desktop]$ sudo subscription-manager repos --enable="rhel-7-server-rpms"  --enable="rhel-7-server-extras-rpms"  --enable="rhel-7-server-ose-3.0-rpms"
+ ~~[demo-user@iotlab Desktop]$ sudo subscription-manager repos --enable="rhel-7-server-rpms"  --enable="rhel-7-server-extras-rpms"  --enable="rhel-7-server-ose-3.0-rpms"~~
  [demo-user@iotlab Desktop]$ sudo yum -y install java-1.7.0-openjdk-devel wget git unzip
  [sudo] password for demo-user:
 
@@ -70,9 +70,11 @@ To install additional RHEL packages, please perform the following steps
  so by performing the following steps
 
   [demo-user@iotlab Desktop]$ cd
-  [demo-user@iotlab ~]$ wget http://mirror.softaculous.com/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
---2016-05-17 17:17:03--  http://mirror.softaculous.com/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
+  ~~[demo-user@iotlab ~]$ wget http://mirror.softaculous.com/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
+--2016-05-17 17:17:03--  http://mirror.softaculous.com/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip~~
+  [demo-user@iotlab ~]$ wget http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
   [demo-user@iotlab ~]$ unzip apache-maven-3.3.9-bin.zip
+  [demo-user@iotlab ~]$ sudo mv apache-maven-3.3.9/ /opt/
   [demo-user@iotlab ~]$ sudo ln -s /opt/maven/bin/mvn /usr/bin/mvn
 
 Now please create a file called '/etc/profile.d/maven.sh' with the following content
