@@ -91,9 +91,10 @@ And again, run the following commands
  [demo-user@iotlab ~]$ sudo chmod +x /etc/profile.d/maven.sh
  [demo-user@iotlab ~]$ source /etc/profile.d/maven.sh
  
-== Clone the IoT_Summit_repo
+== Download Lab codebase
+
  Download the Lab codebased by cloning the repository:
- `git clone https://github.com/PatrickSteiner/IoT_Summit_Lab`
+ git clone https://github.com/PatrickSteiner/IoT_Summit_Lab
 
 
 == Getting the Red Hat Products
