@@ -46,8 +46,12 @@ image:images/install_user.png[]
 After completing the install precedure, register and upgrade your RHEL installation:
 
 
-`[demo-user@iotlab Desktop]$ sudo subscription-manager register --username=rhnuser --password=rhnpasswd`
-`[demo-user@iotlab Desktop]$ sudo yum upgrade`
+```
+[demo-user@iotlab Desktop]$ sudo subscription-manager register --username=rhnuser --password=rhnpasswd`
+[demo-user@iotlab Desktop]$ sudo subscription-manager attach --pool=pool_id
+[demo-user@iotlab Desktop]$ sudo yum upgrade
+
+```
  
 
 == Additional Installations
