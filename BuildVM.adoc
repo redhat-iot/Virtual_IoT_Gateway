@@ -52,7 +52,7 @@ After completing the install precedure, register and upgrade your RHEL installat
 [demo-user@iotlab Desktop]$ sudo yum upgrade
 
 ```
- 
+
 
 == Additional Installations
 To be able to run the demo-labs, you will need the following products/packages
@@ -61,7 +61,6 @@ installed:
 === Additional RHEL packages
 To install additional RHEL packages, please perform the following steps
 
- ~~ [demo-user@iotlab Desktop]$ sudo subscription-manager repos --enable="rhel-7-server-rpms"  --enable="rhel-7-server-extras-rpms"  --enable="rhel-7-server-ose-3.0-rpms" ~~
  [demo-user@iotlab Desktop]$ sudo yum -y install java-1.7.0-openjdk-devel wget git unzip
  [sudo] password for demo-user:
 
@@ -71,8 +70,6 @@ To install additional RHEL packages, please perform the following steps
  so by performing the following steps
 
   [demo-user@iotlab Desktop]$ cd
-  ~~[demo-user@iotlab ~]$ wget http://mirror.softaculous.com/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip~~
-~~--2016-05-17 17:17:03--  http://mirror.softaculous.com/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip~~
   [demo-user@iotlab ~]$ wget http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
   [demo-user@iotlab ~]$ unzip apache-maven-3.3.9-bin.zip
   [demo-user@iotlab ~]$ sudo mv apache-maven-3.3.9/ /opt/
@@ -90,7 +87,7 @@ And again, run the following commands
 
  [demo-user@iotlab ~]$ sudo chmod +x /etc/profile.d/maven.sh
  [demo-user@iotlab ~]$ source /etc/profile.d/maven.sh
- 
+
 == Download Lab codebase
 
  Download the Lab codebased by cloning the repository:
