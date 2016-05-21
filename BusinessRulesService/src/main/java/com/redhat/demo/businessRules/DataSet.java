@@ -1,7 +1,6 @@
 package com.redhat.demo.businessRules;
 
 import java.io.StringWriter;
-import java.util.Date;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

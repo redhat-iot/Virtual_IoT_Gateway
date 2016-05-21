@@ -1,7 +1,5 @@
 package com.redhat.demo.businessRules;
 
-import java.util.logging.Logger;
-
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;

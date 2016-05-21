@@ -1,29 +1,17 @@
 package com.redhat.demo.businessRules;
 
-import java.io.IOException;
 import java.io.StringReader;
-import java.io.StringWriter;
-import java.util.logging.Logger;
 
-import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
-import javax.jms.TextMessage;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
-import org.apache.commons.io.IOUtils;
 
 public class App 
-{
-    private static final Logger log = Logger.getLogger(BRMSServer.class.getName());
-	
-   
-   	 
+{   	 
     public static void main( String[] args ) throws InterruptedException, JMSException, JAXBException, MqttPersistenceException, MqttException
     {
     	String 	messageFromQueue;
