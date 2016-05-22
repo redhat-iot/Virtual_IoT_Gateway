@@ -90,7 +90,7 @@ Once the build procedure has completed, you are ready to proceed.
 For your convenience we provided two simple script that you can use
 start the *Software Sensor*.
 
-Note: Please be aware, that running them now will produce to results, as
+Note: Please be aware, that running them now will produce no visual results, as
 we still need to complete the other steps of this lab.
 
 === runSensor.sh

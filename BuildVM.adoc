@@ -73,14 +73,16 @@ To install additional RHEL packages, please perform the following steps
   [demo-user@iotlab ~]$ wget http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
   [demo-user@iotlab ~]$ unzip apache-maven-3.3.9-bin.zip
   [demo-user@iotlab ~]$ sudo mv apache-maven-3.3.9/ /opt/
-  [demo-user@iotlab ~]$ sudo ln -s /opt/maven/bin/mvn /usr/bin/mvn
+  [demo-user@iotlab ~]$ sudo ln -s /opt/apache-maven-3.3.9/bin/mvn /usr/bin/mvn
 
-Now please create a file called '/etc/profile.d/maven.sh' with the following content
+Now please create a file called '/etc/profile.d/maven_jdk.sh' with the following content
 
  #!/bin/bash
- MAVEN_HOME=/opt/maven
+ MAVEN_HOME=/opt/apache-maven-3.3.9
  PATH=$MAVEN_HOME/bin:$PATH
- export PATH MAVEN_HOME
+ JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64
+ M2_HOME=/opt/apache-maven-3.3.9/
+ export PATH MAVEN_HOME JAVA_HOME M2_HOME
  export CLASSPATH=.
 
 And again, run the following commands
