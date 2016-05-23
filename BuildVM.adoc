@@ -180,17 +180,5 @@ To install *LibreOffice* please perform the following commands
  [demo-user@iotlab ~]$ cd LibreOffice_5.1.3.2_Linux_x86-64_rpm/RPMS/
  [demo-user@iotlab RPMS]$ sudo yum localinstall *.rpm
 
-== Getting the Lab-Code and instructions
-To clone the IoT-Lab exercises into your system, please perform the following
-steps
 
- [demo-user@iotlab ~]$ cd
- [demo-user@iotlab ~]$ git clone https://github.com/PatrickSteiner/IoT_Summit_Lab
- Cloning into 'IoT_Summit_Lab'...
- remote: Counting objects: 320, done.
- remote: Compressing objects: 100% (76/76), done.
- remote: Total 320 (delta 25), reused 0 (delta 0), pack-reused 218
- Receiving objects: 100% (320/320), 2.93 MiB | 647.00 KiB/s, done.
- Resolving deltas: 100% (81/81), done.
-
- Now you are ready to proceed with the Labs! Have fun!
+*Now you are ready to proceed with the Labs! Have fun!*
