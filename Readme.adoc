@@ -1,4 +1,4 @@
-= IoT Summit Lab 2016 - Starting the Lab
+= IoT Summit Lab 2016
 
 :Author:    Patrick Steiner
 :Email:     psteiner@redhat.com
