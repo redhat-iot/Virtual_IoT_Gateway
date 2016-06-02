@@ -115,6 +115,10 @@ decision table as well.
 
 image::images/sampleRule.png[]
 
+[IMPORTANT]
+When saving your changed spreadsheet, please make sure to save it in MS Excel format and not
+odp ( Open Office ), as JBoss BRMS does only understand MS Excel.
+
 == Building and Running the *Business Rules Service*
 Now that we have added a few rules to our decision table, we only need to build
 a new version of the service and start it.
