@@ -82,3 +82,55 @@ The instructions on building and running the first Flow are located https://gith
 
 == Lab 5 - Building and Running the Business Rules Service
 The instructions on building and running the Business Rules Service are located https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/BusinessRulesService[here].
+
+== Lab 6 - Running the Software Sensor to create multiple sensor readings
+In this lab we will use the `Software Sensor` from *Lab 3* to create a stream
+of sensordata and will observe the effect our Business Rules from *Lab 7* has
+on the data.
+
+Please follow the following steps
+
+ * Open a Terminal session or click on an open one
+
+ * In the Terminal session, run the following commands
+
+ [demo-user@iotlab Desktop]$ cd
+ [demo-user@iotlab ~]$ cd IoT_Summit_Lab/
+ [demo-user@iotlab IoT_Summit_Lab]$ ./runSensor.sh
+
+You will see the sensordata being produced and received by the `Business Rules Service`, as
+documented in the following image.
+
+
+image:images/sensordata.png[]
+
+ * You can use the number of messages in the various Queues to verify that the
+ `Business Rules Service` did filter the messages as expected. To do so,
+ go back to your browser windows and navigate to the page showing the Queues
+ and their content.
+
+image:images/queues_to_verify.png[]
+
+In this case, you can see that all produced 50 messages were place into and
+consumed from the queue `message.to.rules` but not a single one was placed
+into the queue `message.to.datacenter` by the `Business Rules Service`.
+
+The reason for this are our implemented rules, which considered these values
+to be in range and therefor not required for further processing.
+
+ * To get a different result you could update the rules to something like in the
+ following image
+
+image:images/new_rules.png[]
+
+ * Now you just need to
+
+ ** stop the running `Business Rules Service` task by hitting
+`CTRL-C` in the right terminal session
+
+ ** re-build and start the updated `Business Rules Service`
+as described and done in *Lab 5*
+
+ ** re-run the sensor
+
+ ** validate the number of messages per Queue in the JBoss Fuse Browser
