@@ -1,0 +1,61 @@
+- name: Configure a RHEL based Intelligent IoT gateway
+  hosts: gateways
+  become: yes
+  tasks:
+#      - name: Upgrade all packages
+#        yum: name=*
+#            state=latest
+        
+      - name: Enable Repo (1/2)
+        shell: subscription-manager repos --enable=rhel-7-server-extras-rpms
+
+      - name: Enable Repo (2/2)
+        shell: subscription-manager repos --enable=rhel-7-server-optional-rpms
+
+      - name: Install various pre-requisites
+       yum: name=java-1.7.0-openjdk-devel,wget,unzip,git
+            state=present
+
+      - name: Clone Gateway code from github
+        git: repo=https://github.com/ishuverma/Virtual-IoT_Summit_Lab.git
+             dest=/home/demo-user/IoT_Summit_Lab
+             version=Virtual-Lab-1
+             
+      - name: Download Maven
+        get_url: url=http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip dest=/home/demo-user/ force=no
+        
+      - name: Unzip Maven
+        shell: unzip /home/demo-user/apache-maven-3.3.9-bin.zip
+
+      - name: Move maven
+        shell: mv /home/demo-user/apache-maven-3.3.9 /opt/
+        become: yes
+        become_method: sudo
+
+      - name: Create link for maven
+        shell: ln -s /opt/apache-maven-3.3.9/bin/mvn /usr/bin/mvn
+        become: yes
+        become_method: sudo
+        
+      - name: Move maven environment setting script
+        shell: mv /home/demo-user/IoT_Demo_Gateway/extras/maven_jdk.sh /etc/profile.d/.
+    
+      - name: Make maven environment setting script executable 
+        shell: chmod +x /etc/profile.d/maven_jdk.sh
+        become: yes
+        become_method: sudo
+        
+      - name: Run maven environment setting script
+        shell: source /etc/profile.d/maven_jdk.sh
+        
+      - name: Upload JBoss Fuse
+        copy: src=/home/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip
+              dest=/home/demo-user/IoT_Demo_Gateway/Fuse/Docker_Files/software/
+              force=no
+
+      - name: Build the Smart Gateway deployables
+        shell: "mvn clean install"
+        args:
+           chdir: /home/demo-user/IoT_Demo_Gateway/Smart_Gateway
+
+      
