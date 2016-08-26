@@ -38,7 +38,7 @@
         become_method: sudo
         
       - name: Move maven environment setting script
-        shell: mv /home/demo-user/IoT_Demo_Gateway/extras/maven_jdk.sh /etc/profile.d/.
+        shell: mv /home/demo-user/IoT_Summit_Lab/extras/maven_jdk.sh /etc/profile.d/.
     
       - name: Make maven environment setting script executable 
         shell: chmod +x /etc/profile.d/maven_jdk.sh
@@ -50,12 +50,12 @@
         
       - name: Upload JBoss Fuse
         copy: src=/home/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip
-              dest=/home/demo-user/IoT_Demo_Gateway/Fuse/Docker_Files/software/
+              dest=/home/demo-user
               force=no
 
-      - name: Build the Smart Gateway deployables
-        shell: "mvn clean install"
-        args:
-           chdir: /home/demo-user/IoT_Demo_Gateway/Smart_Gateway
+#      - name: Build the Smart Gateway deployables
+#        shell: "mvn clean install"
+#        args:
+#           chdir: /home/demo-user/IoT_Demo_Gateway/Smart_Gateway
 
       
