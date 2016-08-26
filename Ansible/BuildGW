@@ -13,7 +13,7 @@
         shell: subscription-manager repos --enable=rhel-7-server-optional-rpms
 
       - name: Install various pre-requisites
-       yum: name=java-1.7.0-openjdk-devel,wget,unzip,git
+        yum: name=java-1.7.0-openjdk-devel,wget,unzip,git
             state=present
 
       - name: Clone Gateway code from github
