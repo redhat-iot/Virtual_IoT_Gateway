@@ -2,9 +2,9 @@
   hosts: gateways
   become: yes
   tasks:
-#      - name: Upgrade all packages
-#        yum: name=*
-#            state=latest
+      - name: Upgrade all packages
+        yum: name=*
+            state=latest
         
       - name: Enable Repo (1/2)
         shell: subscription-manager repos --enable=rhel-7-server-extras-rpms
@@ -22,10 +22,10 @@
              version=Virtual-Lab-1
              
       - name: Download Maven
-        get_url: url=http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip dest=/home/demo-user/ force=no
+        get_url: url=http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip dest=/home/demo-user/Downloads/ force=no
         
       - name: Unzip Maven
-        shell: unzip /home/demo-user/apache-maven-3.3.9-bin.zip
+        shell: unzip /home/demo-user/Downloads/apache-maven-3.3.9-bin.zip -d /home/demo-user/
 
       - name: Move maven
         shell: mv /home/demo-user/apache-maven-3.3.9 /opt/
