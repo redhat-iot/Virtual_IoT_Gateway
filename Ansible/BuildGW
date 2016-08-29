@@ -49,9 +49,7 @@
         shell: source /etc/profile.d/maven_jdk.sh
         
       - name: Upload JBoss Fuse
-        copy: src=/home/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip
-              dest=/home/demo-user
-              force=no
+        shell: cp /home/demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user/
 
 #      - name: Build the Smart Gateway deployables
 #        shell: "mvn clean install"
