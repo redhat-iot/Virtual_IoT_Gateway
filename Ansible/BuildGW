@@ -58,8 +58,10 @@
         shell: tar -xvf /home/demo-user/Downloads/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz -C /home/demo-user/
         
       - name: Install LibreOffice
-        yum: name=/home/demo-user/LibreOffice_5.1.5_Linux_x86-64_rpm/RPMS/*.rpm
-
+        shell: yum -y localinstall /home/demo-user/LibreOffice_5.1.5_Linux_x86-64_rpm/RPMS/*.rpm
+        become: yes
+        become_method: sudo
+        
 #      - name: Build the Smart Gateway deployables
 #        shell: "mvn clean install"
 #        args:
