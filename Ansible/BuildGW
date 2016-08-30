@@ -50,6 +50,15 @@
         
       - name: Upload JBoss Fuse
         shell: cp /home/demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user/
+        
+      - name: Download LibreOffice
+        get_url: url=http://download.documentfoundation.org/libreoffice/stable/5.1.3/rpm/x86_64/LibreOffice_5.1.3_Linux_x86-64_rpm.tar.gz dest=/home/demo-user/Downloads/ force=no
+        
+      - name: Untar LibreOffice
+        unarchive: src=/home/demo-user/Downloads/LibreOffice_5.1.3_Linux_x86-64_rpm.tar.gz dest=/home/demo-user/ remote_src=yes
+        
+      - name: Install LibreOffice
+        yum: name=/home/demo-user/LibreOffice_5.1.3_Linux_x86-64_rpm/RPMS/*.rpm
 
 #      - name: Build the Smart Gateway deployables
 #        shell: "mvn clean install"
