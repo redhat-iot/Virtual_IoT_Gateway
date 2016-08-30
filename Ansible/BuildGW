@@ -55,7 +55,7 @@
         get_url: url=http://download.documentfoundation.org/libreoffice/stable/5.1.5/rpm/x86_64/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz dest=/home/demo-user/Downloads/ force=no
         
       - name: Untar LibreOffice
-        unarchive: src=/home/demo-user/Downloads/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz dest=/home/demo-user/ remote_src=yes
+        shell: tar -xvf /home/demo-user/Downloads/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz -C /home/demo-user/
         
       - name: Install LibreOffice
         yum: name=/home/demo-user/LibreOffice_5.1.5_Linux_x86-64_rpm/RPMS/*.rpm
