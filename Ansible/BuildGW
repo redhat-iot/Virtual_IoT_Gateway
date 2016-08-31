@@ -51,6 +51,12 @@
       - name: Upload JBoss Fuse
         shell: cp /home/demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user/
         
+      - name: Install JBoss Fuse
+        shell: unzip /home/demo-user/jboss-fuse-full-6.2.1.redhat-084.zip
+        
+      - name: Create link for fuse
+        shell: ln -s jboss-fuse-full-6.2.1.redhat-084 fuse
+        
       - name: Download LibreOffice
         get_url: url=http://download.documentfoundation.org/libreoffice/stable/5.1.5/rpm/x86_64/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz dest=/home/demo-user/Downloads/ force=no
         
