@@ -22,7 +22,7 @@
              version=Virtual-Lab-1
             
       - name: Change to IoT-Summit_Lab directory
-        shell: cd /home/demo-user/IoT_Sumnmit_Lab/
+        shell: cd /home/demo-user/IoT_Summit_Lab/
       
       - name: Make demo-user the owner for all files in in IoT-Summit_Lab directory
         shell: chown demo-user:demo-user -R *
