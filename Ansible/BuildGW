@@ -63,21 +63,21 @@
         shell: cd /home/demo-user/IoT_Summit_Lab
         
       - name: Install JBoss Fuse
-        unarchive: src=/home/demo-user/IoT_Summit_Lab/jboss-fuse-full-6.2.1.redhat-084.zip dest=/home/demo-user copy=no
+        unarchive: src=/home/demo-user/jboss-fuse-full-6.2.1.redhat-084.zip dest=/home/demo-user copy=no
         
       - name: Create link for fuse
         shell: ln -s jboss-fuse-6.2.1.redhat-084 fuse chdir=/home/demo-user/IoT_Summit_Lab
         
-      - name: Download LibreOffice
-        get_url: url=http://download.documentfoundation.org/libreoffice/stable/5.1.5/rpm/x86_64/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz dest=/home/demo-user/Downloads/ force=no
+#      - name: Download LibreOffice
+#        get_url: url=http://download.documentfoundation.org/libreoffice/stable/5.1.5/rpm/x86_64/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz dest=/home/demo-user/Downloads/ force=no
         
-      - name: Untar LibreOffice
-        shell: tar -xvf /home/demo-user/Downloads/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz -C /home/demo-user/
+#      - name: Untar LibreOffice
+#        shell: tar -xvf /home/demo-user/Downloads/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz -C /home/demo-user/
         
-      - name: Install LibreOffice
-        shell: yum -y localinstall /home/demo-user/LibreOffice_5.1.5.2_Linux_x86-64_rpm/RPMS/*.rpm
-        become: yes
-        become_method: sudo
+#      - name: Install LibreOffice
+#        shell: yum -y localinstall /home/demo-user/LibreOffice_5.1.5.2_Linux_x86-64_rpm/RPMS/*.rpm
+#        become: yes
+#        become_method: sudo
       
       - name: Change to IoT_Summit_Lab directory
         shell: cd /home/demo-user/IoT_Summit_Lab
@@ -89,13 +89,15 @@
         shell: cd /home/demo-user/IoT_Summit_Lab/Software_Sensor
         
       - name: Build Soft sensor
-        shell: mvn clean install chdir=/home/demo-user/IoT_Summit_Lab/Software_Sensor
+        shell: mvn clean install 
+        args:
+          chdir=/home/demo-user/IoT_Summit_Lab/Software_Sensor
         
-#      - name: Change to IoT_Summit_Lab directory
-#        shell: cd /home/demo-user/IoT_Summit_Lab
+      - name: Change to IoT_Summit_Lab directory
+        shell: cd /home/demo-user/IoT_Summit_Lab
         
-#      - name: Build and Run Routing Service
-#        shell: ./runRoutingService.sh chdir=/home/demo-user/IoT_Summit_Lab
+      - name: Build and Run Routing Service
+        shell: ./runRoutingService.sh chdir=/home/demo-user/IoT_Summit_Lab
       
         
 #      - name: Build the Smart Gateway deployables
