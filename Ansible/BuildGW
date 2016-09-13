@@ -56,6 +56,11 @@
         become: yes
         become_method: sudo
         
+      - name: Make demo-user the owner for all files in demo-user directory
+        shell: chown demo-user:demo-user -R * chdir=/home/demo-user
+        become: yes
+        become_method: sudo
+        
       - name: Upload JBoss Fuse
         shell: cp /home/demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user/
       
@@ -85,8 +90,8 @@
       - name: Run JBoss Fuse
         shell: ./runJBossFuse.sh  chdir=/home/demo-user/IoT_Summit_Lab
       
-#      - name: Change to Software sensor directory
-#        shell: cd /home/demo-user/IoT_Summit_Lab/Software_Sensor
+      - name: Change to Software sensor directory
+        shell: cd /home/demo-user/IoT_Summit_Lab/Software_Sensor
         
       - name: Build Soft sensor
         shell: mvn clean install 
