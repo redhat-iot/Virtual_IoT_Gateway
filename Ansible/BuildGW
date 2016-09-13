@@ -66,7 +66,7 @@
         unarchive: src=/home/demo-user/jboss-fuse-full-6.2.1.redhat-084.zip dest=/home/demo-user copy=no
         
       - name: Create link for fuse
-        shell: ln -s jboss-fuse-6.2.1.redhat-084 fuse chdir=/home/demo-user/IoT_Summit_Lab
+        shell: ln -s jboss-fuse-6.2.1.redhat-084 fuse chdir=/home/demo-user
         
 #      - name: Download LibreOffice
 #        get_url: url=http://download.documentfoundation.org/libreoffice/stable/5.1.5/rpm/x86_64/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz dest=/home/demo-user/Downloads/ force=no
