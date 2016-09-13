@@ -23,11 +23,6 @@
             
       - name: Change to IoT-Summit_Lab directory
         shell: cd /home/demo-user/IoT_Summit_Lab/
-      
-      - name: Make demo-user the owner for all files in in IoT-Summit_Lab directory
-        shell: chown demo-user:demo-user -R *
-        become: yes
-        become_method: sudo
              
       - name: Download Maven
         get_url: url=http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip dest=/home/demo-user/Downloads/ force=no
@@ -56,11 +51,24 @@
       - name: Run maven environment setting script
         shell: source /etc/profile.d/maven_jdk.sh
         
+      - name: Make demo-user the owner for all files in in IoT-Summit_Lab directory
+        shell: chown demo-user:demo-user -R * chdir=/home/demo-user/IoT_Summit_Lab
+        become: yes
+        become_method: sudo
+        
+      - name: Make root the owner for all files in in IoT-Summit_Lab directory
+        file: /home/demo-user/IoT_Summit_Lab/ owner=root group=root mode=777 recurse=yes
+        become: yes
+        become_method: sudo
+        
       - name: Upload JBoss Fuse
         shell: cp /home/demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user/
+      
+      - name: Change to IoT_Summit_Lab directory
+        shell: cd /home/demo-user/IoT_Summit_Lab
         
       - name: Install JBoss Fuse
-        shell: unzip /home/demo-user/jboss-fuse-full-6.2.1.redhat-084.zip
+        shell: unzip /home/demo-user/jboss-fuse-full-6.2.1.redhat-084.zip -d /home/demo-user
         
       - name: Create link for fuse
         shell: ln -s jboss-fuse-6.2.1.redhat-084 fuse
