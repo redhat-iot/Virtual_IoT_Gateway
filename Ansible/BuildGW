@@ -90,20 +90,8 @@
       - name: Run JBoss Fuse
         shell: ./runJBossFuse.sh  chdir=/home/demo-user/IoT_Summit_Lab
       
-      - name: Change to Software sensor directory
-        shell: cd /home/demo-user/IoT_Summit_Lab/Software_Sensor
-        
-      - name: Build Soft sensor
-        shell: mvn clean install 
-        args:
-          chdir=/home/demo-user/IoT_Summit_Lab/Software_Sensor
-        
-      - name: Change to IoT_Summit_Lab directory
-        shell: cd /home/demo-user/IoT_Summit_Lab
-        
-      - name: Build and Run Routing Service
-        shell: ./runRoutingService.sh chdir=/home/demo-user/IoT_Summit_Lab
-      
+      - name: Install mqtt
+        shell: features:install camel-mqtt
         
 #      - name: Build the Smart Gateway deployables
 #        shell: "mvn clean install"
