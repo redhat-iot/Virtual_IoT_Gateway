@@ -63,7 +63,7 @@
         shell: cd /home/demo-user/IoT_Summit_Lab
         
       - name: Install JBoss Fuse
-        shell: unzip /home/demo-user/jboss-fuse-full-6.2.1.redhat-084.zip -d /home/demo-user
+        unarchive: src=/home/demo-user/IoT_Summit_Lab/jboss-fuse-full-6.2.1.redhat-084.zip dest=/home/demo-user copy=no
         
       - name: Create link for fuse
         shell: ln -s jboss-fuse-6.2.1.redhat-084 fuse chdir=/home/demo-user/IoT_Summit_Lab
