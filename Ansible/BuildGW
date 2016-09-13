@@ -77,7 +77,7 @@
         become_method: sudo
       
       - name: Change to IoT_Summit_Lab directory
-        shell: cd /home/demo-user/IoT_Sumnmit_Lab
+        shell: cd /home/demo-user/IoT_Summit_Lab
       
       - name: Run JBoss Fuse
         shell: ./runJBossFuse.sh
