@@ -92,6 +92,12 @@
       
 #      - name: Install mqtt
 #        shell: features:install camel-mqtt
+
+      - name: Build Soft sensor
+        shell: mvn clean install chdir=/home/demo-user/IoT_Summit_Lab/Software_Sensor
+        
+      - name: Build and Run Routing Service
+        shell: ./runRoutingService.sh chdir=/home/demo-user/IoT_Summit_Lab
         
 #      - name: Build the Smart Gateway deployables
 #        shell: "mvn clean install"
