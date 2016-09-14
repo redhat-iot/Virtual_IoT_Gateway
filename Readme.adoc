@@ -1,8 +1,9 @@
 = IoT Summit Lab 2016
 
 :Author:    Patrick Steiner
-:Email:     psteiner@redhat.com
-:Date:      11.05.2016
+:Updated:   Ishu Verma
+:Email:     psteiner@redhat.com, iverma@redhat.com
+:Date:      09.14.2016
 
 :toc: macro
 
