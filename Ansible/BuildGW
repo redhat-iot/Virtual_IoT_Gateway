@@ -56,16 +56,16 @@
         become: yes
         become_method: sudo
         
+      - name: Upload JBoss Fuse
+        shell: cp /home/demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user/
+      
       - name: Make demo-user the owner for all files in demo-user directory
         shell: chown demo-user:demo-user -R * chdir=/home/demo-user
         become: yes
         become_method: sudo
         
-      - name: Upload JBoss Fuse
-        shell: cp /home/demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user/
-      
-      - name: Change to IoT_Summit_Lab directory
-        shell: cd /home/demo-user/IoT_Summit_Lab
+#      - name: Change to IoT_Summit_Lab directory
+#        shell: cd /home/demo-user/IoT_Summit_Lab
         
       - name: Install JBoss Fuse
         unarchive: src=/home/demo-user/jboss-fuse-full-6.2.1.redhat-084.zip dest=/home/demo-user copy=no
@@ -84,14 +84,14 @@
 #        become: yes
 #        become_method: sudo
       
-      - name: Change to IoT_Summit_Lab directory
-        shell: cd /home/demo-user/IoT_Summit_Lab
+#      - name: Change to IoT_Summit_Lab directory
+#        shell: cd /home/demo-user/IoT_Summit_Lab
       
-      - name: Run JBoss Fuse
-        shell: ./runJBossFuse.sh  chdir=/home/demo-user/IoT_Summit_Lab
+#      - name: Run JBoss Fuse
+#        shell: ./runJBossFuse.sh  chdir=/home/demo-user/IoT_Summit_Lab
       
-      - name: Install mqtt
-        shell: features:install camel-mqtt
+#      - name: Install mqtt
+#        shell: features:install camel-mqtt
         
 #      - name: Build the Smart Gateway deployables
 #        shell: "mvn clean install"
