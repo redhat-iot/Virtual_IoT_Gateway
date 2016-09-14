@@ -58,11 +58,6 @@
         
       - name: Upload JBoss Fuse
         shell: cp /home/demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user/
-      
-      - name: Make demo-user the owner for all files in demo-user directory
-        shell: chown demo-user:demo-user -R * chdir=/home/demo-user
-        become: yes
-        become_method: sudo
         
 #      - name: Change to IoT_Summit_Lab directory
 #        shell: cd /home/demo-user/IoT_Summit_Lab
@@ -72,6 +67,11 @@
         
       - name: Create link for fuse
         shell: ln -s jboss-fuse-6.2.1.redhat-084 fuse chdir=/home/demo-user
+        
+      - name: Make demo-user the owner for all files in demo-user directory
+        shell: chown demo-user:demo-user -R * chdir=/home/demo-user
+        become: yes
+        become_method: sudo
         
 #      - name: Download LibreOffice
 #        get_url: url=http://download.documentfoundation.org/libreoffice/stable/5.1.5/rpm/x86_64/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz dest=/home/demo-user/Downloads/ force=no
