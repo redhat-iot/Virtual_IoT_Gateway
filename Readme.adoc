@@ -1,7 +1,6 @@
-= IoT Lab Series: Building Intelligent IoT Gateway in 3 Steps
+= Building Intelligent IoT Gateway in 3 Steps
 
-:Author:    Patrick Steiner
-:Enhanced:  Ishu Verma
+:Author:    Patrick Steiner, Ishu Verma
 :Email:     psteiner@redhat.com, iverma@redhat.com
 :Date:      09/14/2016
 
@@ -9,17 +8,24 @@
 
 toc::[]
 
-== Content
-Intelligent gateway is the core pillar of enterprise Internet of Things (IoT) architecture that enables critical decision-making at the edge, securing downstream devices and optimizing network utilization. In this lab, you'll learn how to build the intelligent gateway with open source software from Red Hat in 3 steps. 
+== Overview
+Intelligent IoT Gateway is the core pillar of enterprise Internet of Things (IoT) architecture because it enables real time  decision-making at the edge, secures downstream devices and optimizes network utilization. In this lab, you'll learn how to build the Intelligent IoT Gateway with open source software in 3 steps. 
 
-We'll be installing key software, including Red Hat Enterprise Linux and Red Hat JBOSS Middleware, needed for provisioning the intelligent gateway. We’ll also learn how to create camel routes to transform sensor data and place them in appropriate queues. We’ll also set up business rules to enable real-time decision making at the edge and filter data to the datacenter.
+This Gateway can be implemented on a physical hardware (x84 64 bit) or a virtual machine. The task of preparing the system including installing required software has been automated through Ansible. 
+
+== Content
+This project uses the following subprojects:
+* https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/Software_Sensor[Software Sensors]: a software sensor who could can be used to simulate sensor data creation.
+* https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/BusinessRulesService[Rules Service]: a service which receives data from a defined AMQ-Queue, validates those against Business Rules and drops the results in another defined AMQ-Queue
+* https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/RoutingService[Routing Service]: the service who receives, transforms and routes messages from one destination to the next.
+
+
+This project leverages the camel routes to transform sensor data and places them in appropriate queues. In this lab weWe’ll also set up business rules to enable real-time decision making at the edge and filter data to the datacenter.
 This repository contains the material needed to replicate the IoT Gateway lab from the 2016 Red Hat Summit.
 
 The following sub-projects have been created
 
-* https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/Software_Sensor[Software Sensors]: a software sensor who could can be used to simulate sensor data creation.
-* https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/BusinessRulesService[Rules Service]: a service which receives data from a defined AMQ-Queue, validates those against Business Rules and drops the results in another defined AMQ-Queue
-* https://github.com/PatrickSteiner/IoT_Summit_Lab/tree/master/RoutingService[Routing Service]: the service who receives, transforms and routes messages from one destination to the next.
+
 
 == Lab 0 - Preparing the Lab Environment
 If you should do these labs on an environment, which was not prepared for it,
