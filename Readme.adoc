@@ -1,4 +1,4 @@
-= IoT Summit Lab 2016
+= IoT Lab Series: Building Intelligent IoT Gateway in 3 Steps
 
 :Author:    Patrick Steiner
 :Enhanced:  Ishu Verma
@@ -10,6 +10,9 @@
 toc::[]
 
 == Content
+Intelligent gateway is the core pillar of enterprise Internet of Things (IoT) architecture that enables critical decision-making at the edge, securing downstream devices and optimizing network utilization. In this lab, you'll learn how to build the intelligent gateway with open source software from Red Hat in 3 steps. 
+
+We'll be installing key software, including Red Hat Enterprise Linux and Red Hat JBOSS Middleware, needed for provisioning the intelligent gateway. We’ll also learn how to create camel routes to transform sensor data and place them in appropriate queues. We’ll also set up business rules to enable real-time decision making at the edge and filter data to the datacenter.
 This repository contains the material needed to replicate the IoT Gateway lab from the 2016 Red Hat Summit.
 
 The following sub-projects have been created
