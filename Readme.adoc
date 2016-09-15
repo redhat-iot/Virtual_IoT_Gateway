@@ -1,15 +1,16 @@
 = IoT Summit Lab 2016
 
 :Author:    Patrick Steiner
-:Email:     psteiner@redhat.com
-:Date:      11.05.2016
+:Enhanced:  Ishu Verma
+:Email:     psteiner@redhat.com, iverma@redhat.com
+:Date:      09/14/2016
 
 :toc: macro
 
 toc::[]
 
 == Content
-This repository contains the material build for the 2016 Red Hat Summit.
+This repository contains the material needed to replicate the IoT Gateway lab from the 2016 Red Hat Summit.
 
 The following sub-projects have been created
 
