@@ -45,73 +45,9 @@ The sensor data will be transformed and routed by a camel route provided in this
  [demo-user@iotlab ~]$ cd IoT_Summit_Lab/
  [demo-user@iotlab IoT_Summit_Lab]$ ./runRoutingService.sh
 
-==== Verify that the Camel route has been deployed
-We can verify the deployment of our first Flow by doing the following steps
+==== We can verify that the Camel route has been deployed by logging into JBOSS Fuse admin cosole: instructions here <https://github.com/ishuverma/Virtual-IoT_Summit_Lab/tree/Virtual-Lab-1/RoutingService#verify-that-the-camel-route-has-been-deployed>
 
- * Open a browser
 
-image:RoutingService/images/startFirefox.png[]
-
- * Open the admin console of Red Hat JBoss Fuse by browsing to it's URL
-
-image:RoutingService/images/startHawtio.png[]
-
- * Enter the *admin* Username and *change12_me* as Password and click the *Log in* button
-
-image:RoutingService/images/enterCredentials.png[]
-
- * Go to the *Logs* panel
-
-image:RoutingService/images/openLogs.png[]
-
- * Look for the corresponding messages in the logs
-
-image:RoutingService/images/viewLogs.png[]
-
-=== Sending a test message
-By now you should have the following elements of the IoT environment ready build
-
- * a software sensor to simulate data
- * a route to receive data via MQTT and forward in a different messageformat via AMQP
-
-we can easily verify this, by doing the following:
-
- * Start the provided script *runHighSensor.sh*,  which will send one message. You
- can use the same terminal windows from which you initiated the build and deploy.
-
- [demo-user@localhost IoT_Summit_Lab]$ ./runHighSensor.sh
- Starting the producer to send messages
- Sending `70,0`
-
- * Open the *ActiveMQ* panel in the JBoss Fuse admin page
-
-image:images/openActiveMQView.png[]
-
- * Click on the `Topic` tree and verify the number for "Enqueue" and "Dequeue" for
- our topic *iotdemo.temperature.4711*. This entry will tell you how many messages
- have been received on this MQTT-Topic and how many of these have been read from
- the Topic.
-
-image:images/viewMQTTTopics.png[]
-
- * As our Flow was designed to take a message from the MQTT-Topic and put it into an AMQP
- queue, we should find our *dequeued* message in a *Queue*. Therefor click on *Queue* and
- verify the number of *Enqueued* messages in the *message.to.rules* queue.
-
-image:images/viewAMQP.png[]
-
- * Last, but not least, we can verify if the new message is really transformed
- from CSV to XML. To do this, click on the queue-name in the tree-view and on *Browse*
-
-image:images/viewMessage.png[]
-
- * Select the message you want to see, we should only have one!
-
-image:images/viewMessageList.png[]
-
- * Be Happy!
-
-image:images/messageContent.png[]
 
 
 
