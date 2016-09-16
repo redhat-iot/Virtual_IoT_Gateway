@@ -1,4 +1,4 @@
-= Building Intelligent IoT Gateway in 3 Steps
+= Build Intelligent IoT Gateway in 3 Easy Steps
 
 :Author:    Patrick Steiner, Ishu Verma
 :Email:     psteiner@redhat.com, iverma@redhat.com
@@ -11,7 +11,27 @@ toc::[]
 == Overview
 Intelligent IoT Gateway is the core pillar of enterprise Internet of Things (IoT) architecture because it enables real time  decision-making at the edge, secures downstream devices and optimizes network utilization. In this lab, you'll learn how to build the Intelligent IoT Gateway with open source software in 3 steps. 
 
-This Gateway can be implemented on a physical hardware (x84 64 bit) or a virtual machine. The task of preparing the system including installing required software has been automated through Ansible. 
+This Gateway can be implemented on a physical hardware (x84 64 bit) or a virtual machine running RHEL 7.2. The JBOSS Fuse uses camel to  transform and route the sensor data. While JBOSS BRMS allows real-time decision making at the edge per defined business rules. The task of configuring the system including installing required software is automated through Ansible.
+
+ * Enter the following commands
+Step 1: Start JBOSS Fuse
+  [demo-user@localhost ~]$ cd
+  [demo-user@localhost ~]$ cd IoT_Summit_Lab
+  [demo-user@iotlab IoT_Summit_Lab]$ ./runJBossFuse.sh
+
+* Wait for the Red Hat JBoss Fuse to complete the start procedure
+
+image:images/fuse_started.png[]
+
+* To be able to process MQTT messages, Red Hat JBoss Fuse needs to install the
+'camel-mqtt' OSGi features. To to this, enter the following simple command on the
+'JBossFuse' command prompt
+
+ JBossFuse:karaf@root> features:install camel-mqtt
+
+* Minimize this shell, as we don't need it at the moment
+
+image::images/minimize_fuse.png[]
 
 == Content
 This project uses the following subprojects:
@@ -128,9 +148,7 @@ into the queue `message.to.datacenter` by the `Business Rules Service`.
 The reason for this are our implemented rules, which considered these values
 to be in range and therefor not required for further processing.
 
- * To get a different result you could update the rules to something like in the
- following image
-
+ * To get a different result you could up 
 image:images/new_rules.png[]
 
  * Now you just need to
