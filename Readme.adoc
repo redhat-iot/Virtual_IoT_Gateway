@@ -1,4 +1,4 @@
-= Build Intelligent IoT Gateway in 3 Easy Steps
+= Build Intelligent IoT Gateway in a Few Easy Steps
 
 :Author:    Patrick Steiner, Ishu Verma
 :Email:     psteiner@redhat.com, iverma@redhat.com
@@ -9,12 +9,15 @@
 toc::[]
 
 == Overview
-Intelligent IoT Gateway is the core pillar of enterprise Internet of Things (IoT) architecture because it enables real time  decision-making at the edge, secures downstream devices and optimizes network utilization. In this lab, you'll learn how to build the Intelligent IoT Gateway with open source software in 3 steps. 
+Intelligent IoT Gateway is the core pillar of enterprise Internet of Things (IoT) architecture because it enables real time  decision-making at the edge, secures downstream devices and optimizes network utilization. In this lab, you'll learn how to build the Intelligent IoT Gateway with open source software in a few simple steps. 
 
 This Gateway can be implemented on a physical hardware (x84 64 bit) or a virtual machine running RHEL 7.2. The JBOSS Fuse uses camel to  transform and route the sensor data. While JBOSS BRMS allows real-time decision making at the edge per defined business rules. The task of configuring the system including installing required software is automated through Ansible.
 
- * Enter the following commands
-Step 1: Start JBOSS Fuse
+
+=== Step 2 - Start JBoss Fuse Server
+
+ * Open a new shell and enter the following commands:
+
   [demo-user@localhost ~]$ cd
   [demo-user@localhost ~]$ cd IoT_Summit_Lab
   [demo-user@iotlab IoT_Summit_Lab]$ ./runJBossFuse.sh
@@ -29,9 +32,29 @@ image:images/fuse_started.png[]
 
  JBossFuse:karaf@root> features:install camel-mqtt
 
-* Minimize this shell, as we don't need it at the moment
+* Minimize this shell to keep JBOSS Fuse server running in the background
 
 image::images/minimize_fuse.png[]
+
+=== Step 3 - Build and Deploying Camel Route
+Now we need to build the Red Hat JBoss Fuse project and deploy it to our running JBoss Fuse server. We’ll use the provided script to build and deploy.
+For your convenience, we created a script which will:
+
+ * build the Red Hat JBoss Fuse project
+ * deploy it to our running JBoss Fuse instance
+
+To build and deploy, all you need to do is perform the following steps
+
+* open a terminal
+
+image:images/openTerminal.png[]
+
+ * perform the following commands
+
+ [demo-user@iotlab Software_Sensor]$ cd
+ [demo-user@iotlab ~]$ cd IoT_Summit_Lab/
+ [demo-user@iotlab IoT_Summit_Lab]$ ./runRoutingService.sh
+
 
 == Content
 This project uses the following subprojects:
