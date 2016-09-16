@@ -224,7 +224,7 @@ image:images/openTerminal.png[]
  [demo-user@iotlab IoT_Summit_Lab]$ ./runRoutingService.sh
 
 
-=== Verify that the Camel route has been deployed (#Verify-that-the-Camel-route-has-been-deployed)
+=== [Verify that the Camel route has been deployed](#Verify-that-the-Camel-route-has-been-deployed)
 We can verify the deployment of our first Flow by doing the following steps
 
  * Open a browser
