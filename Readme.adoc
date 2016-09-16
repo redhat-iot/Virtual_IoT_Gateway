@@ -45,28 +45,28 @@ The sensor data will be transformed and routed by a camel route provided in this
  [demo-user@iotlab ~]$ cd IoT_Summit_Lab/
  [demo-user@iotlab IoT_Summit_Lab]$ ./runRoutingService.sh
 
-=== Verify that the Camel route has been deployed
+==== Verify that the Camel route has been deployed
 We can verify the deployment of our first Flow by doing the following steps
 
  * Open a browser
 
-image:images/startFirefox.png[]
+image:RoutingService/images/startFirefox.png[]
 
  * Open the admin console of Red Hat JBoss Fuse by browsing to it's URL
 
-image:images/startHawtio.png[]
+image:RoutingService/images/startHawtio.png[]
 
  * Enter the *admin* Username and *change12_me* as Password and click the *Log in* button
 
-image:images/enterCredentials.png[]
+image:RoutingService/images/enterCredentials.png[]
 
  * Go to the *Logs* panel
 
-image:images/openLogs.png[]
+image:RoutingService/images/openLogs.png[]
 
  * Look for the corresponding messages in the logs
 
-image:images/viewLogs.png[]
+image:RoutingService/images/viewLogs.png[]
 
 === Sending a test message
 By now you should have the following elements of the IoT environment ready build
