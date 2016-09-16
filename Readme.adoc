@@ -45,7 +45,7 @@ The sensor data will be transformed and routed by a camel route provided in this
  [demo-user@iotlab ~]$ cd IoT_Summit_Lab/
  [demo-user@iotlab IoT_Summit_Lab]$ ./runRoutingService.sh
 
-==== We can verify that the Camel route has been deployed by logging into JBOSS Fuse admin cosole https://github.com/ishuverma/Virtual-IoT_Summit_Lab/tree/Virtual-Lab-1/RoutingService#verify-that-the-camel-route-has-been-deployed[here]
+** We can verify that the Camel route has been deployed by logging into JBOSS Fuse admin cosole https://github.com/ishuverma/Virtual-IoT_Summit_Lab/tree/Virtual-Lab-1/RoutingService#verify-that-the-camel-route-has-been-deployed[here]**
 
 
 
