@@ -34,7 +34,7 @@ image:images/fuse_started.png[]
 
 * Minimize this shell to keep JBOSS Fuse server running in the background
 
-image::images/minimize_fuse.png[]
+image:images/minimize_fuse.png[]
 
 === Step 3 - Build and Deploy Camel Route
 The sensor data will be transformed and routed by a camel route provided in this project. Now we need to build the Red Hat JBoss Fuse project and deploy it to our running JBoss Fuse server. We’ll use the provided script to build and deploy the project.
