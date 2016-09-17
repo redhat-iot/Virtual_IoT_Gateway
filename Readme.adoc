@@ -45,7 +45,7 @@ The sensor data will be transformed and routed by a camel route provided in this
  [demo-user@iotlab ~]$ cd IoT_Summit_Lab/
  [demo-user@iotlab IoT_Summit_Lab]$ ./runRoutingService.sh
 
-**We can verify that the Camel route has been deployed by logging into JBOSS Fuse admin cosole https://github.com/ishuverma/Virtual-IoT_Summit_Lab/tree/Virtual-Lab-1/RoutingService#verify-that-the-camel-route-has-been-deployed[here]**
+**We can verify that the Camel route has been deployed by logging into JBOSS Fuse admin cosole https://github.com/ishuverma/Virtual-IoT_Summit_Lab/tree/Virtual-Lab-1/RoutingService#verify-that-the-camel-route-has-been-deployed[see details]**
 
 === Step 4 - Create Business Rules
 One of the important functions of Intelligent IoT Gateway is trigger action if the sensor data meets certain condition defined by business rules. In this section we’ll learn how to create business rules service.  This service will work the following way:
@@ -78,6 +78,7 @@ The columns in this table represent the following
 
 Rule 1: If we get a temperature reading between 0 and 60, change the result field to 0
 Rule 2: If we get a temperature reading between 61 and 100, change the result field to 1
+
 _Note: In the 2nd rule Payload, add a space between “61,” and “100”_
 
 image:BusinessRulesService/images/sampleRule.png[]
@@ -111,6 +112,7 @@ We will try this service by sending a test message via the *Software Sensor* to 
  1. *Software Sensor* sends a message with a high value via MQTT
  2. *Routing Service* will pick it up, transform the message and send it to an AMQP message queue.
  3. *Business Rules Service* will take the transformed message from the queue and will put it in another AMQP message queue, but only if it meets the business rule condition
+
 
 * Enter the following commands in a new terminal
 
