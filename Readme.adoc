@@ -114,15 +114,13 @@ We will try this service by sending a test message via the *Software Sensor* to 
  3. *Business Rules Service* will take the transformed message from the queue and will put it in another AMQP message queue, but only if it meets the business rule condition
  
  
-
-
-- Enter the following commands in a new terminal
+Enter the following commands in a new terminal
 
  [demo-user@localhost Desktop]$ cd
  [demo-user@localhost ~]$ cd IoT_Summit_Lab/
  [demo-user@localhost IoT_Summit_Lab]$ ./runHighSensor.sh
 
-- It should display following output
+It should display following output
  Starting the producer to send messages
  Sending '70,0'
 
@@ -135,7 +133,7 @@ We will try this service by sending a test message via the *Software Sensor* to 
  Sending <?xml version="1.0" encoding="UTF-8" standalone="yes"?><dataSet><timestamp>17.05.2016 15:08:59 265</timestamp><deviceType>temperature</deviceType><deviceID>4711</deviceID><payload>70</payload><required>0</required><average>0.0</average><errorCode>1</errorCode></dataSet>
  ----------------------
 
-- Another way to verify that the message was properly processed is to take a
+Another way to verify that the message was properly processed is to take a
  look at Red Hat JBoss Fuse console via 'http://localhost:8181', The count of messages enqueued and dequeued shoud now show that one message has been taken from 'message.to.rules' and placed into 'message.to.datacenter'.
 
 image:BusinessRulesService/images/testResult.png[]
