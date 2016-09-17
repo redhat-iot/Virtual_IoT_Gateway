@@ -47,9 +47,116 @@ The sensor data will be transformed and routed by a camel route provided in this
 
 **We can verify that the Camel route has been deployed by logging into JBOSS Fuse admin cosole https://github.com/ishuverma/Virtual-IoT_Summit_Lab/tree/Virtual-Lab-1/RoutingService#verify-that-the-camel-route-has-been-deployed[here]**
 
+=== Step 4 - Create Business Rules
+One of the important functions of Intelligent IoT Gateway is trigger action if the sensor data meets certain condition defined by business rules. In this section we’ll learn how to create business rules service.  This service will work the following way:
 
+- Sensor data is read from a Message queue
+- Sensor data is handed over to the rules execution engine that triggers action per defined rules 
+- Altered data is placed into another defined Message queue
 
+We'll use MS Excel based decision table to define the business rules. The following image shows an example of a Decision Table where each row represents a rule. The blue columns are 'conditions' and the yellow column define an 'action'.
 
+image:BusinessRulesService/images/DecisionTable.png[]
+
+Rules syntax is pretty simple: 
+If
+   some condition
+then
+   some action
+The rules system is capable of reading the rules from a spreadsheet  and compile them into rules in the above syntax.  For this lab, sample business rule spreadsheet is provided that can be used to create new rules. 
+
+image:BusinessRulesService/images/DecisionTablexls.png[]
+
+The columns in this table represent the following
+
+ * **Alerting Rule** Name of the rule. It is optional field but very useful for debugging
+ * **Device Type** Type of device reported by the sensor
+ * **Payload** Number-range this rule will need to match with
+ * **Result** Action triggered by the rule i.e. changing value to 0 or 1
+ 
+**Create two rules by filling in the following information** 
+
+Rule 1: If we get a temperature reading between 0 and 60, change the result field to 0
+Rule 2: If we get a temperature reading between 61 and 100, change the result field to 1
+Note: In the 2nd rule Payload, add a space between “61,” and “100”
+image::BusinessRulesService/images/sampleRule.png[]
+
+[IMPORTANT]
+Save the spreadsheet in MS Excel format
+
+== Build and Run the *Business Rules Service*
+Now that we have added a few rules to our decision table, we need to build
+a new version of the service and start it.
+
+As of now, you should have a terminal open, in which you started Red Hat JBoss Fuse
+and another terminal in which you did build and deployed the Routing Service.
+
+You can use the same terminal again, to build and start the *Business Rules Service*
+
+To do so, enter the following commands in your terminal session
+
+ [demo-user@localhost IoT_Summit_Lab]$ cd
+ [demo-user@localhost ~]$ cd IoT_Summit_Lab/
+ [demo-user@localhost IoT_Summit_Lab]$ ./runRulesService.sh
+ < removed a output >
+ AMQ-Broker tcp://localhost:61616 ready to work!
+
+It should also print
+
+ Device-Type = temperature
+ Device-ID   = 4711
+ Payload     = 70
+ Result      = 1
+ ----------------------
+ Sending <?xml version="1.0" encoding="UTF-8" standalone="yes"?><dataSet><timestamp>18.05.2016 10:46:22 766</timestamp><deviceType>temperature</deviceType><deviceID>4711</deviceID><payload>70</payload><required>0</required><average>0.0</average><errorCode>1</errorCode></dataSet>
+
+as this is the message, which we did send to our environment, when we tested
+the *Routing Service*.
+
+== Sending a test messages
+As during the previous lab, we will try this service by sending a test message
+via the *Software Sensor* to our setup. The following should happen.
+
+ 1. *Software Sensor* sends a message with a high value via MQTT
+ 2. *Routing Service* will pick it up, transform the message and send it
+ to an AMQP message queue.
+ 3. *Business Rules Service* will take the transformed message from the queue
+ and will put it in another AMQP message queue, but only if a business rule
+ told him to.
+
+To perform this test, perform the following steps
+
+ * Open a new terminal windows
+
+image:images/openTerminal.png[]
+
+ * Start the provided script *runHighSensor.sh*, which will send one message
+
+ [demo-user@localhost Desktop]$ cd
+ [demo-user@localhost ~]$ cd IoT_Summit_Lab/
+ [demo-user@localhost IoT_Summit_Lab]$ ./runHighSensor.sh
+ Starting the producer to send messages
+ Sending '70,0'
+
+ * The terminal window in which you started the *Business Rules Service*, should
+ now show the debug-output with the received data and the XML string, which
+ is forwarded to another AMQP message queue for further processing.
+
+ AMQ-Broker tcp://localhost:61616 ready to work!
+ Device-Type = temperature
+ Device-ID   = 4711
+ Payload     = 70
+ Result      = 1
+ ----------------------
+ Sending <?xml version="1.0" encoding="UTF-8" standalone="yes"?><dataSet><timestamp>17.05.2016 15:08:59 265</timestamp><deviceType>temperature</deviceType><deviceID>4711</deviceID><payload>70</payload><required>0</required><average>0.0</average><errorCode>1</errorCode></dataSet>
+ ----------------------
+
+ * Another way to verify that the message was properly processed is to take a
+ look at Red Hat JBoss Fuse console via 'http://localhost:8181', as in the previous
+ lab. The count of messages enqueued and dequeued shoud now show that one message
+ has been taken from 'message.to.rules' and placed into 'message.to.datacenter'.
+
+image:images/testResult.png[]
 
 == Content
 This project uses the following subprojects:
