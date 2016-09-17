@@ -121,6 +121,7 @@ Enter the following commands in a new terminal
  [demo-user@localhost IoT_Summit_Lab]$ ./runHighSensor.sh
 
 It should display following output
+ 
  Starting the producer to send messages
  Sending '70,0'
 
