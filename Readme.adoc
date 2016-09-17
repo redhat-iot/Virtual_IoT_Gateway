@@ -76,8 +76,8 @@ The columns in this table represent the following
  
 **Create two rules by filling in the following information** 
 
-Rule 1: If we get a temperature reading between 0 and 60, change the result field to 0
-Rule 2: If we get a temperature reading between 61 and 100, change the result field to 1
+- Rule 1: If we get a temperature reading between 0 and 60, change the result field to 0
+- Rule 2: If we get a temperature reading between 61 and 100, change the result field to 1
 
 _Note: In the 2nd rule Payload, add a space between “61,” and “100”_
 
@@ -113,7 +113,7 @@ We will try this service by sending a test message via the *Software Sensor* to 
  2. *Routing Service* will pick it up, transform the message and send it to an AMQP message queue.
  3. *Business Rules Service* will take the transformed message from the queue and will put it in another AMQP message queue, but only if it meets the business rule condition
 
-
+X
 * Enter the following commands in a new terminal
 
  [demo-user@localhost Desktop]$ cd
