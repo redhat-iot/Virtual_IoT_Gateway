@@ -94,10 +94,10 @@ The rules system is capable of reading the rules from a spreadsheet  and compile
 
 The columns in this table represent the following
 
- * _Alerting Rule_ Name of the rule. It is optional field but very useful for debugging
- * _Device Type_ Type of device reported by the sensor
- * _Payload_ Number-range this rule will need to match with
- * _Result_ Action triggered by the rule i.e. changing value to 0 or 1
+ * _Alerting Rule_: Name of the rule. It is optional field but very useful for debugging
+ * _Device Type_: Type of device reported by the sensor
+ * _Payload_: Number-range this rule will need to match with
+ * _Result_: Action triggered by the rule i.e. changing value to 0 or 1
  
 **Open the sample rules spreadsheet: 'DecisionTable.xls'**
 
