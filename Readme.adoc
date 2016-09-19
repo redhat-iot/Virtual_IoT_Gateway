@@ -13,9 +13,9 @@ Intelligent IoT Gateway is the core pillar of enterprise Internet of Things (IoT
 
 This Gateway can be implemented on a physical hardware (x84 64 bit) or a virtual machine running RHEL 7.2. The JBOSS Fuse uses camel to  transform and route the sensor data. While JBOSS BRMS allows real-time decision making at the edge per defined business rules. The task of configuring the system including installing required software is automated through Ansible.
 
-===Requirements
-On the Host system: Install Ansible [e.g. yum install ansible]
-On the Gateway: Download JBOSS Fuse 6.2.1 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it Downloads folder
+=== Requirements
+*Host System*: Install Ansible [e.g. yum install ansible]
+*Gateway*: Download JBOSS Fuse 6.2.1 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it Downloads folder
 
 === Step 1 - Prepare the system using Ansible
 
