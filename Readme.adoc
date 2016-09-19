@@ -15,7 +15,7 @@ This Gateway can be implemented on a physical hardware (x84 64 bit) or a virtual
 
 === Requirements
 - *Host System*: Install Ansible [e.g. yum install ansible]
-- *Gateway*: Download JBOSS Fuse 6.2.1 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it Downloads folder
+- *Gateway*: Download JBOSS Fuse 6.2.1 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it in the Downloads folder
 
 === Step 1 - Prepare the system using Ansible
 
