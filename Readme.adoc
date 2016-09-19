@@ -92,8 +92,6 @@ then
    some action
 The rules system is capable of reading the rules from a spreadsheet  and compile them into rules in the above syntax.  For this lab, sample business rule spreadsheet is provided that can be used to create new rules. 
 
-image:BusinessRulesService/images/editRules.png[]
-
 The columns in this table represent the following
 
  * **Alerting Rule** Name of the rule. It is optional field but very useful for debugging
@@ -101,6 +99,9 @@ The columns in this table represent the following
  * **Payload** Number-range this rule will need to match with
  * **Result** Action triggered by the rule i.e. changing value to 0 or 1
  
+**Open the sample rules spreadsheet: 'DecisionTable.xls'**  
+image:BusinessRulesService/images/editRules.png[]
+
 **Create two rules by filling in the following information** 
 
 - Rule 1: If we get a temperature reading between 0 and 60, change the result field to 0
@@ -111,6 +112,8 @@ _Note: In the 2nd rule Payload, add a space between “61,” and “100”_
 image:BusinessRulesService/images/sampleRule.png[]
 
 _Note: Save the spreadsheet in MS Excel format_
+
+*The details on the Business Rules Service are https://github.com/ishuverma/Virtual_IoT_Gateway/tree/Virtual-Lab-1/BusinessRulesService[here]*
 
 === Step 6: Build and Run the *Business Rules Service*
 Now that we have added a few rules to our decision table, we need to build
