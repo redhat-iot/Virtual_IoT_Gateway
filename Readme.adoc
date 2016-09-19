@@ -92,7 +92,7 @@ then
    some action
 The rules system is capable of reading the rules from a spreadsheet  and compile them into rules in the above syntax.  For this lab, sample business rule spreadsheet is provided that can be used to create new rules. 
 
-image:BusinessRulesService/images/DecisionTablexls.png[]
+image:BusinessRulesService/images/editRules.png[]
 
 The columns in this table represent the following
 
