@@ -17,7 +17,7 @@
             state=present
 
       - name: Clone Gateway code from github
-        git: repo=https://github.com/ishuverma/Virtual-IoT_Summit_Lab.git
+        git: repo=https://github.com/ishuverma/Virtual_IoT_Gateway.git
              dest=/home/demo-user/IoT_Summit_Lab
              version=Virtual-Lab-1
             
