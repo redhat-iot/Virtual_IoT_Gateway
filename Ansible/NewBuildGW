@@ -2,54 +2,20 @@
   hosts: gateways
   become: yes
   tasks:
-#      - name: Upgrade all packages
-#        yum: name=*
-#            state=latest
-        
 #      - name: Enable Repo (1/2)
 #        shell: subscription-manager repos --enable=rhel-7-server-extras-rpms
 
-#      - name: Enable Repo (2/2)
-#        shell: subscription-manager repos --enable=rhel-7-server-optional-rpms
+      - name: Enable Repo (2/2)
+        shell: subscription-manager repos --enable=rhel-7-server-optional-rpms
 
-#      - name: Install various pre-requisites
-        yum: name=java-1.7.0-openjdk-devel,wget,unzip,git
+      - name: Install various pre-requisites
+        yum: name=wget,git,maven
             state=present
 
       - name: Clone Gateway code from github
-        git: repo=https://github.com/ishuverma/Virtual-IoT_Summit_Lab.git
+        git: repo=https://github.com/ishuverma/Virtual_IoT_Gateway.git
              dest=/home/demo-user/IoT_Summit_Lab
              version=Virtual-Lab-1
-            
-      - name: Change to IoT-Summit_Lab directory
-        shell: cd /home/demo-user/IoT_Summit_Lab/
-             
-      - name: Download Maven
-        get_url: url=http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip dest=/home/demo-user/Downloads/ force=no
-        
-      - name: Unzip Maven
-        shell: unzip /home/demo-user/Downloads/apache-maven-3.3.9-bin.zip -d /home/demo-user/
-
-      - name: Move maven
-        shell: mv /home/demo-user/apache-maven-3.3.9 /opt/
-        become: yes
-        become_method: sudo
-
-      - name: Create link for maven
-        shell: ln -s /opt/apache-maven-3.3.9/bin/mvn /usr/bin/mvn
-        become: yes
-        become_method: sudo
-        
-      - name: Move maven environment setting script
-        shell: mv /home/demo-user/IoT_Summit_Lab/extras/maven_jdk.sh /etc/profile.d/.
-    
-      - name: Make maven environment setting script executable 
-        shell: chmod +x /etc/profile.d/maven_jdk.sh
-        become: yes
-        become_method: sudo
-        
-      - name: Run maven environment setting script
-        shell: source /etc/profile.d/maven_jdk.sh
         
       - name: Make demo-user the owner for all files in in IoT-Summit_Lab directory
         shell: chown demo-user:demo-user -R * chdir=/home/demo-user/IoT_Summit_Lab
@@ -58,9 +24,6 @@
         
       - name: Upload JBoss Fuse
         shell: cp /home/demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user/
-        
-#      - name: Change to IoT_Summit_Lab directory
-#        shell: cd /home/demo-user/IoT_Summit_Lab
         
       - name: Install JBoss Fuse
         unarchive: src=/home/demo-user/jboss-fuse-full-6.2.1.redhat-084.zip dest=/home/demo-user copy=no
@@ -73,35 +36,18 @@
         become: yes
         become_method: sudo
         
-#      - name: Download LibreOffice
-#        get_url: url=http://download.documentfoundation.org/libreoffice/stable/5.1.5/rpm/x86_64/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz dest=/home/demo-user/Downloads/ force=no
+      - name: Download LibreOffice
+        get_url: url=http://download.documentfoundation.org/libreoffice/stable/5.1.5/rpm/x86_64/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz dest=/home/demo-user/Downloads/ force=no
         
-#      - name: Untar LibreOffice
-#        shell: tar -xvf /home/demo-user/Downloads/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz -C /home/demo-user/
+      - name: Untar LibreOffice
+        shell: tar -xvf /home/demo-user/Downloads/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz -C /home/demo-user/
         
-#      - name: Install LibreOffice
-#        shell: yum -y localinstall /home/demo-user/LibreOffice_5.1.5.2_Linux_x86-64_rpm/RPMS/*.rpm
-#        become: yes
-#        become_method: sudo
-      
-#      - name: Change to IoT_Summit_Lab directory
-#        shell: cd /home/demo-user/IoT_Summit_Lab
-      
-#      - name: Run JBoss Fuse
-#        shell: ./runJBossFuse.sh  chdir=/home/demo-user/IoT_Summit_Lab
-      
-#      - name: Install mqtt
-#        shell: features:install camel-mqtt
+      - name: Install LibreOffice
+        shell: yum -y localinstall /home/demo-user/LibreOffice_5.1.5.2_Linux_x86-64_rpm/RPMS/*.rpm
+        become: yes
+        become_method: sudo
 
       - name: Build Soft sensor
         shell: mvn clean install chdir=/home/demo-user/IoT_Summit_Lab/Software_Sensor
-        
-#      - name: Build and Run Routing Service
-#        shell: ./runRoutingService.sh chdir=/home/demo-user/IoT_Summit_Lab
-        
-#      - name: Build the Smart Gateway deployables
-#        shell: "mvn clean install"
-#        args:
-#           chdir: /home/demo-user/IoT_Demo_Gateway/Smart_Gateway
 
       
