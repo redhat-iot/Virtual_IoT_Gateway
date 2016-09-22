@@ -83,7 +83,7 @@ One of the important functions of Intelligent IoT Gateway is trigger action if t
 
 We'll use MS Excel based decision table to define the business rules. The following image shows an example of a Decision Table where each row represents a rule. The blue columns are 'conditions' and the yellow column define an 'action'.
 
-image:Bhttps://github.com/ishuverma/Virtual_IoT_Gateway/raw/Virtual-Lab-1/BusinessRulesService/images/DecisionTable.png[]
+image:images/DecisionTable.png[]
 
 
 Rules syntax is pretty simple: 
@@ -102,7 +102,7 @@ The columns in this table represent the following
  
 **Open the sample rules spreadsheet: 'DecisionTable.xls'**
 
-image:BusinessRulesService/images/editRules.png[]
+image:images/editRules.png[]
 
 **Create two rules by filling in the following information** 
 
@@ -169,6 +169,6 @@ It should display following output
 Another way to verify that the message was properly processed is to take a
  look at Red Hat JBoss Fuse console via 'http://localhost:8181', The count of messages enqueued and dequeued shoud now show that one message has been taken from 'message.to.rules' and placed into 'message.to.datacenter'.
 
-image:BusinessRulesService/images/testResult.png[]
+image:images/testResult.png[]
 
 *--------------------- End of Lab ---------------------*
