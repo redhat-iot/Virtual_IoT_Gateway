@@ -83,7 +83,8 @@ One of the important functions of Intelligent IoT Gateway is trigger action if t
 
 We'll use MS Excel based decision table to define the business rules. The following image shows an example of a Decision Table where each row represents a rule. The blue columns are 'conditions' and the yellow column define an 'action'.
 
-image:BusinessRulesService/images/DecisionTable.png[]
+image:Bhttps://github.com/ishuverma/Virtual_IoT_Gateway/raw/Virtual-Lab-1/BusinessRulesService/images/DecisionTable.png[]
+
 
 Rules syntax is pretty simple: 
 If
