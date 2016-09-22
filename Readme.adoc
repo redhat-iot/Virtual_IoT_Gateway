@@ -111,7 +111,7 @@ image:images/editRules.png[]
 
 _Note: In the 2nd rule Payload, add a space between “61,” and “100”_
 
-image:BusinessRulesService/images/sampleRule.png[]
+image:images/sampleRule.png[]
 
 _Note: Save the spreadsheet in MS Excel format_
 
