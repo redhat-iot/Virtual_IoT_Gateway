@@ -12,6 +12,7 @@ toc::[]
 Intelligent IoT Gateway is the core pillar of enterprise Internet of Things (IoT) architecture because it enables real time  decision-making at the edge, secures downstream devices and optimizes network utilization. In this lab, you'll learn how to build the Intelligent IoT Gateway with open source software in a few simple steps. 
 
 This Gateway can be implemented on a physical hardware (x84 64 bit) or a virtual machine running RHEL 7.2. The main comoponents of the Gateway are:
+- *Host System*: 
 - *Red Hat Enterprise Linux* to provide Enterprise class foundation
 - *JBOSS Fuse* to transform sensor data and route it to end points
 - *JBOSS BRMS* to enable real-time decision making at the edge
