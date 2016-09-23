@@ -12,10 +12,10 @@ toc::[]
 Intelligent IoT Gateway is the core pillar of enterprise Internet of Things (IoT) architecture because it enables real time  decision-making at the edge, secures downstream devices and optimizes network utilization. In this lab, you'll learn how to build the Intelligent IoT Gateway with open source software in a few simple steps. 
 
 This Gateway can be implemented on a physical hardware (x84 64 bit) or a virtual machine running RHEL 7.2. The main comoponents of the Gateway are:
- - *Red Hat Enterprise Linux* to provide Enterprise class foundation
- - *JBOSS Fuse* to transform sensor data and route it to end points
- - *JBOSS BRMS* to enable real-time decision making at the edge
- - *JBOSS A-MQ* to arbitrate sensor data
+- *Red Hat Enterprise Linux* to provide Enterprise class foundation
+- *JBOSS Fuse* to transform sensor data and route it to end points
+- *JBOSS BRMS* to enable real-time decision making at the edge
+- *JBOSS A-MQ* to arbitrate sensor data
 
 The task of configuring the gateway system including installing required software is automated through Ansible. Once the Gateway is provisioned, we'll put it into action by starting JBOSS Fuse, building & deploying the pre-built routing and business rules services. We'll then start senor app that sends temperature data using MQTT to the JBOSS A-MQ broker. These messages will be forwarded to the services that we started earlier. Finally, we'll be creating the business rules to trigger desired action when the sensor value reaches a threshold. 
 
