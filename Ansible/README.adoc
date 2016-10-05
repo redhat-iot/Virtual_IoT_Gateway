@@ -12,9 +12,9 @@ Ansible’s main goals are simplicity and ease-of-use. It manages machines over 
 
 _Note: You may need to add epel repo or download the download the rpm from http://fedoraproject.org/wiki/EPEL[epel]_
 
-++ Exchange SSH key
+== Exchange SSH key
 
-If you need to generate the ssh key:
+If you need to generate the ssh key first:
   [user@localhost ~]$ ssh-keygen -t rsa
   [user@localhost ~]$ ssh-copy-id -i ~/.ssh/id_rsa.pub user@hostname
 
