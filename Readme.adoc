@@ -109,11 +109,11 @@ The columns in this table represent the following
  * _Payload_: Number-range this rule will need to match with
  * _Result_: Action triggered by the rule i.e. changing value to 0 or 1
  
-**Open the sample rules spreadsheet: 'DecisionTable.xls'**
+ * Open the sample rules spreadsheet: 'DecisionTable.xls'
 
 image:images/editRules.png[]
 
-**Create two rules by filling in the following information** 
+ * Create two rules by filling in the following information 
 
 - Rule 1: If we get a temperature reading between 0 and 60, change the result field to 0
 - Rule 2: If we get a temperature reading between 61 and 100, change the result field to 1
@@ -131,7 +131,7 @@ _Note: Save the spreadsheet in MS Excel format_
 Now that we have added a few rules to our decision table, we need to build
 a new version of the service and start it.
 
-Enter the following commands in a terminal
+ * Enter the following commands in a terminal
 
  [demo-user@localhost IoT_Summit_Lab]$ cd
  [demo-user@localhost ~]$ cd IoT_Summit_Lab/
@@ -156,7 +156,7 @@ We will try this service by sending a test message via the *Software Sensor* to 
  3. *Business Rules Service* will take the transformed message from the queue and will put it in another AMQP message queue, but only if it meets the business rule condition
  
  
-Enter the following commands in a new terminal
+ * Enter the following commands in a new terminal
 
  [demo-user@localhost Desktop]$ cd
  [demo-user@localhost ~]$ cd IoT_Summit_Lab/
