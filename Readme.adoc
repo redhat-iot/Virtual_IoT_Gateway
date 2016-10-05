@@ -104,6 +104,12 @@ The rules system is capable of reading the rules from a spreadsheet  and compile
 
 The columns in this table represent the following:
 
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+
+
  Field | Description 
  ----- | ----------- 
 | Alerting Rule | Name of the rule. It is optional field but very useful for debugging |
