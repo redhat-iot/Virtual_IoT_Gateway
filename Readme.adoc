@@ -85,9 +85,9 @@ The sensor data will be transformed and routed by a camel route provided in this
 === Step 5 - Create Business Rules
 One of the important functions of Intelligent IoT Gateway is trigger action if the sensor data meets certain condition defined by business rules. In this section we’ll learn how to create business rules service.  This service will work the following way:
 
-- Sensor data is read from a Message queue
-- Sensor data is handed over to the rules execution engine that triggers action per defined rules 
-- Altered data is placed into another defined Message queue
++ Sensor data is read from a Message queue
++ Sensor data is handed over to the rules execution engine that triggers action per defined rules 
++ Altered data is placed into another defined Message queue
 
 We'll use MS Excel based decision table to define the business rules. The following image shows an example of a Decision Table where each row represents a rule. The blue columns are 'conditions' and the yellow column define an 'action'.
 
