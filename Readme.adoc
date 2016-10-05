@@ -22,7 +22,7 @@ This Gateway can be implemented on a physical hardware (x84 64 bit) or a virtual
 The task of configuring the gateway system including installing required software is automated through Ansible. Once the Gateway is provisioned, we'll put it into action by starting JBOSS Fuse, building & deploying the pre-built routing and business rules services. We'll then start senor app that sends temperature data using MQTT to the JBOSS A-MQ broker. These messages will be forwarded to the services that we started earlier. Finally, we'll be creating the business rules to trigger desired action when the sensor value reaches a threshold. 
 
 === Requirements
-- *Host System*: Install Ansible [e.g. yum install ansible]
+- *Host System*: Ansible
 - *Gateway*: Download JBOSS Fuse 6.2.1 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it in the Downloads folder
 
 === Step 1 - Prepare the system using Ansible
@@ -99,6 +99,7 @@ If
    some condition
 then
    some action
+   
 The rules system is capable of reading the rules from a spreadsheet  and compile them into rules in the above syntax.  For this lab, sample business rule spreadsheet is provided that can be used to create new rules. 
 
 The columns in this table represent the following
@@ -120,6 +121,7 @@ image:images/editRules.png[]
 _Note: In the 2nd rule Payload, add a space between “61,” and “100”_
 
 image:images/sampleRule.png[]
+
 
 _Note: Save the spreadsheet in MS Excel format_
 
