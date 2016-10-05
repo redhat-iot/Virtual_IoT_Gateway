@@ -1,0 +1,36 @@
+= Getting started with Ansible
+[source: http://docs.ansible.com/]
+
+== Overview
+Ansible is an IT automation tool. It can configure systems, deploy software, and orchestrate more advanced IT tasks such as continuous deployments or zero downtime rolling updates.
+
+Ansible’s main goals are simplicity and ease-of-use. It manages machines over the SSH protocol.
+
+== Installation
+$ sudo yum install ansible
+
+
+
+
+=== Requirements
+- *Host System*: Install Ansible [e.g. yum install ansible]
+- *Gateway*: Download JBOSS Fuse 6.2.1 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it in the Downloads folder
+
+=== Step 1 - Prepare the system using Ansible
+
+We'll use the automation tool Ansible to remotely provision our Gateway system by installing required components.
+
+ * Open a terminal and enter the following commands:
+  
+  [user@localhost ~]$ git clone -b Virtual-Lab-1 https://github.com/IshuVerma/Virtual_IoT_Gateway.git
+ 
+ * Update the host file [Virtual-IoT-Gateway/Ansible/host] with IP address of the Gateway and place the public key of the host on the remote Gateway (Ansible uses ssh to communicate with remote system)
+
+_Note: For the Gateway, we're using username = 'demo-user' and password = 'change12_me'. Please update the playbook with the  username/password for your Gateway_
+ 
+ * Launch the Ansible playbook by entering the following commands:
+  
+  [user@localhost ~]$ cd Virtual_IoT_Gateway/Ansible
+  [user@localhost ~]$ ansible-playbook BuildGW
+  
+*Let the Ansible run through the tasks in the playbook. Once Ansible is finished, we're ready to start work directly on the Gateway*
