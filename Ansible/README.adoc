@@ -7,10 +7,10 @@ Ansible is an IT automation tool. It can configure systems, deploy software, and
 Ansible’s main goals are simplicity and ease-of-use. It manages machines over the SSH protocol.
 
 == Installation
+
   [user@localhost ~]$ sudo yum install ansible
 
-
-
+Note: Add epel repo or download the download the rpm from http://fedoraproject.org/wiki/EPEL[epel] 
 
 
 === Requirements
