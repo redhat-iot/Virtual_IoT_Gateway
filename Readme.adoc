@@ -61,9 +61,9 @@ _Note: For the Gateway, we're using username = 'demo-user' and password = 'chang
 
 image:images/fuse_started.png[]
 
-* To be able to process MQTT messages, Red Hat JBoss Fuse needs to install the
-'camel-mqtt' OSGi features. To to this, enter the following simple command on the
-'JBossFuse' command prompt
+Red Hat JBoss Fuse needs to install the 'camel-mqtt' OSGi features to process MQTT messages. 
+
+* Enter the following simple command on the 'JBossFuse' command prompt
 
  JBossFuse:karaf@root> features:install camel-mqtt
 
