@@ -154,11 +154,11 @@ It should display following output
 === Step 7: Test Rule Service
 We will try this service by sending a test message via the *Software Sensor* to our setup. The following should happen:
 
-_*Software Sensor* sends a message with a high value via MQTT_
+*Software Sensor* sends a message with a high value via MQTT
 
-_*Routing Service* will pick it up, transform the message and send it to an AMQP message queue_
+*Routing Service* will pick it up, transform the message and send it to an AMQP message queue
 
-_*Business Rules Service* will take the transformed message from the queue and will put it in another AMQP message queue, but only if it meets the business rule condition_
+*Business Rules Service* will take the transformed message from the queue and will put it in another AMQP message queue, but only if it meets the business rule condition
  
  
  * Enter the following commands in a new terminal
