@@ -23,3 +23,7 @@ Store the key to avoid retyping password:
 
   [user@localhost ~]$ ssh-agent bash
   [user@localhost ~]$ ssh-add ~/.ssh/id_rsa
+  
+Test to see if you can ping the target machine:
+
+  [user@localhost ~]$ ansible all -m ping
