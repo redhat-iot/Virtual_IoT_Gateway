@@ -102,12 +102,12 @@ then
    
 The rules system is capable of reading the rules from a spreadsheet  and compile them into rules in the above syntax.  For this lab, sample business rule spreadsheet is provided that can be used to create new rules. 
 
-The columns in this table represent the following
+The columns in this table represent the following:
 
- _Alerting Rule: Name of the rule. It is optional field but very useful for debugging_
- _Device Type: Type of device reported by the sensor_
- _Payload_: Number-range this rule will need to match with_
- _Result: Action triggered by the rule i.e. changing value to 0 or 1_
+_Alerting Rule: Name of the rule. It is optional field but very useful for debugging_
+_Device Type: Type of device reported by the sensor_
+_Payload_: Number-range this rule will need to match with_
+_Result: Action triggered by the rule i.e. changing value to 0 or 1_
  
  * Open the sample rules spreadsheet: 'DecisionTable.xls'
 
@@ -149,11 +149,11 @@ It should display following output
  Sending <?xml version="1.0" encoding="UTF-8" standalone="yes"?><dataSet><timestamp>18.05.2016 10:46:22 766</timestamp><deviceType>temperature</deviceType><deviceID>4711</deviceID><payload>70</payload><required>0</required><average>0.0</average><errorCode>1</errorCode></dataSet>
 
 === Step 7: Test Rule Service
-We will try this service by sending a test message via the *Software Sensor* to our setup. The following should happen.
+We will try this service by sending a test message via the *Software Sensor* to our setup. The following should happen:
 
- 1. *Software Sensor* sends a message with a high value via MQTT
- 2. *Routing Service* will pick it up, transform the message and send it to an AMQP message queue.
- 3. *Business Rules Service* will take the transformed message from the queue and will put it in another AMQP message queue, but only if it meets the business rule condition
+1. *Software Sensor* sends a message with a high value via MQTT
+2. *Routing Service* will pick it up, transform the message and send it to an AMQP message queue.
+3. *Business Rules Service* will take the transformed message from the queue and will put it in another AMQP message queue, but only if it meets the business rule condition
  
  
  * Enter the following commands in a new terminal
