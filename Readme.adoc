@@ -104,12 +104,12 @@ The rules system is capable of reading the rules from a spreadsheet  and compile
 
 The columns in this table represent the following:
 
-| Field | Description |
-| ----- | ----------- |
-| Alerting Rule | Name of the rule. It is optional field but very useful for debugging |
-| Device Type | Type of device reported by the sensor|
-| Payload | Number-range this rule will need to match with |
-| Result | Action triggered by the rule i.e. changing value to 0 or 1 |
+ | Field | Description |
+ | ----- | ----------- |
+ | Alerting Rule | Name of the rule. It is optional field but very useful for debugging |
+ | Device Type | Type of device reported by the sensor|
+ | Payload | Number-range this rule will need to match with |
+ | Result | Action triggered by the rule i.e. changing value to 0 or 1 |
  
  * Open the sample rules spreadsheet: 'DecisionTable.xls'
 
