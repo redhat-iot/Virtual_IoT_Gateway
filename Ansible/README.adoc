@@ -10,7 +10,18 @@ Ansible’s main goals are simplicity and ease-of-use. It manages machines over 
 
   [user@localhost ~]$ sudo yum install ansible
 
-_Note: Add epel repo or download the download the rpm from http://fedoraproject.org/wiki/EPEL[epel]_
+_Note: You may need to add epel repo or download the download the rpm from http://fedoraproject.org/wiki/EPEL[epel]_
+
+++ Exchange SSH key
+
+If you need to generate the ssh key:
+  [user@localhost ~]$ ssh-keygen -t rsa
+  [user@localhost ~]$ ssh-copy-id -i ~/.ssh/id_rsa.pub user@hostname
+
+Store the key to avoid retyping password:
+  [user@localhost ~]$ ssh-agent bash
+  [user@localhost ~]$ ssh-add ~/.ssh/id_rsa
+
 
 
 === Requirements
