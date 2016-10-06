@@ -26,7 +26,7 @@
         become_method: sudo
         
       - name: Upload JBoss Fuse
-        shell: cp /home/demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/{{user-name}}/
+        shell: cp /home/{{user-name}}/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/{{user-name}}/
         
       - name: Install JBoss Fuse
         unarchive: src=/home/{{user-name}}/jboss-fuse-full-6.2.1.redhat-084.zip dest=/home/{{user-name}} copy=no
