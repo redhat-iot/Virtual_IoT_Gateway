@@ -3,7 +3,7 @@
   become: yes
   tasks:
       - name: Set user name
-        set_fact: user: 'demo-user'
+        set_fact: user='demo-user'
 
 #      - name: Enable Repo (1/2)
 #        shell: subscription-manager repos --enable=rhel-7-server-extras-rpms
