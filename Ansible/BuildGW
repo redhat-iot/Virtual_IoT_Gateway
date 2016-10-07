@@ -29,7 +29,7 @@
         shell: cp /home/{{user}}/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/{{user}}/
         
       - name: Install JBoss Fuse
-        unarchive: src=/home/{{user}}/jboss-fuse-full-6.2.1.redhat-084.zip dest=/home/{{name}} copy=no
+        unarchive: src=/home/{{user}}/jboss-fuse-full-6.2.1.redhat-084.zip dest=/home/{{user}} copy=no
         
       - name: Create link for fuse
         shell: ln -s jboss-fuse-6.2.1.redhat-084 fuse chdir=/home/{{user}}
