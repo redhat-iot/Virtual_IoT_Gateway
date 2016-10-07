@@ -19,7 +19,7 @@ This Gateway can be implemented on a physical hardware (x84 64 bit) or a virtual
 * *JBOSS A-MQ* to arbitrate sensor data
 
 
-The task of configuring the gateway system including installing required software is automated through Ansible. Once the Gateway is provisioned, we'll put it into action by starting JBOSS Fuse, building & deploying the pre-built routing and business rules services. We'll then start senor app that sends temperature data using MQTT to the JBOSS A-MQ broker. These messages will be forwarded to the services that we started earlier. Finally, we'll be creating the business rules to trigger desired action when the sensor value reaches a threshold. 
+The task of configuring the gateway system including installing required software is automated through Ansible. Once the Gateway is provisioned, we'll put it into action by starting JBOSS Fuse, building & deploying the pre-built routing and business rules services. We'll then start sensor app that sends temperature data using MQTT to the JBOSS A-MQ broker. These messages will be forwarded to the services that we started earlier. Finally, we'll be creating the business rules to trigger desired action when the sensor value reaches a threshold. 
 
 === Requirements
 - *Host System*: Ansible
