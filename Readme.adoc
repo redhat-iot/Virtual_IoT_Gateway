@@ -33,7 +33,7 @@ We'll use the automation tool Ansible to remotely provision our Gateway system b
   
   [user@localhost ~]$ git clone -b Virtual-Lab-1-Host https://github.com/RedHat-IoT/Virtual_IoT_Gateway.git
  
- * Update the host file [Virtual-IoT-Gateway/Ansible/host] with IP address of the Gateway and place the public key of the host on the remote Gateway (Ansible uses ssh to communicate with remote system). You can learn how to setup Ansible http://docs.ansible.com/ansible/intro_getting_started.html[here].
+ * Update the host file [Virtual-IoT-Gateway/Ansible/host] with IP address of the Gateway and place the public key of the host on the remote Gateway (Ansible uses ssh to communicate with remote system). You can learn how to setup Ansible https://github.com/redhat-iot/Virtual_IoT_Gateway/tree/Virtual-Lab-1-Host/Ansible[here].
 
 _Note: For the Gateway, we're using username = 'demo-user' and password = 'change12_me'._
 
