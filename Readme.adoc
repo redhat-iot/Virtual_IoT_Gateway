@@ -186,7 +186,7 @@ It should display following output
 Another way to verify that the message was properly processed is to take a
  look at Red Hat JBoss Fuse console via 'http://localhost:8181', The count of messages enqueued and dequeued shoud now show that one message has been taken from 'message.to.rules' and placed into 'message.to.datacenter'.
  
- _Note: Fuse console login/password is admin/change12_me_
+_Note: Fuse console login/password is admin/change12_me_
 
 image:images/testResult.png[]
 
