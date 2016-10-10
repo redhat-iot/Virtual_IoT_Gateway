@@ -192,4 +192,4 @@ image:images/testResult.png[]
 
 *--------------------- End of Lab ---------------------*
 
-[![Lab walkthrough video](https://github.com/redhat-iot/Virtual_IoT_Gateway/blob/Virtual-Lab-1-Host/images/BuildingGWLab.png?raw=true)](https://vimeo.com/186218203)
+image:images/BuildingGWLab.png)(https://vimeo.com/186218203)
