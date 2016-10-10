@@ -192,4 +192,4 @@ image:images/testResult.png[]
 
 *--------------------- End of Lab ---------------------*
 
-[![Lab walkthrough video](https://github.com/redhatdemocentral/cdk-install-demo/blob/master/docs/demo-images/cdk-install-video.png?raw=true)](https://vimeo.com/186218203)
+[![Lab walkthrough video](https://github.com/redhat-iot/Virtual_IoT_Gateway/blob/Virtual-Lab-1-Host/images/BuildingGWLab.png?raw=true)](https://vimeo.com/186218203)
