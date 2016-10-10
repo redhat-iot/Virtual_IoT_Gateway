@@ -191,3 +191,5 @@ _Note: Fuse console login/password is admin/change12_me_
 image:images/testResult.png[]
 
 *--------------------- End of Lab ---------------------*
+
+[![Lab walkthrough video](https://github.com/redhatdemocentral/cdk-install-demo/blob/master/docs/demo-images/cdk-install-video.png?raw=true)](https://vimeo.com/186218203)
