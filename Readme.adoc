@@ -192,4 +192,4 @@ image:images/testResult.png[]
 
 *--------------------- End of Lab ---------------------*
 
-https://vimeo.com/186218203image:images/BuildingGWLab.png[]
+image:images/BuildingGWLab.png[link="https://vimeo.com/186218203"]
