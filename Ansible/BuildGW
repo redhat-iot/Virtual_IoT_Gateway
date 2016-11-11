@@ -12,7 +12,7 @@
         shell: subscription-manager repos --enable=rhel-7-server-optional-rpms
 
       - name: Install various pre-requisites
-        yum: name=wget,git,maven
+        yum: name=wget,git,maven,libreoffice
             state=present
 
       - name: Clone Gateway code from github
@@ -39,16 +39,16 @@
         become: yes
         become_method: sudo
         
-      - name: Download LibreOffice
-        get_url: url=http://download.documentfoundation.org/libreoffice/stable/5.1.5/rpm/x86_64/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz dest=/home/{{user}}/Downloads/ force=no
+#      - name: Download LibreOffice
+#        get_url: url=http://download.documentfoundation.org/libreoffice/stable/5.1.5/rpm/x86_64/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz dest=/home/{{user}}/Downloads/ force=no
         
-      - name: Untar LibreOffice
-        shell: tar -xvf /home/{{user}}/Downloads/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz -C /home/{{user}}/
+#      - name: Untar LibreOffice
+#        shell: tar -xvf /home/{{user}}/Downloads/LibreOffice_5.1.5_Linux_x86-64_rpm.tar.gz -C /home/{{user}}/
         
-      - name: Install LibreOffice
-        shell: yum -y localinstall /home/{{user}}/LibreOffice_5.1.5.2_Linux_x86-64_rpm/RPMS/*.rpm
-        become: yes
-        become_method: sudo
+#      - name: Install LibreOffice
+#        shell: yum -y localinstall /home/{{user}}/LibreOffice_5.1.5.2_Linux_x86-64_rpm/RPMS/*.rpm
+#        become: yes
+#        become_method: sudo
 
       - name: Build Soft sensor
         shell: mvn clean install chdir=/home/{{user}}/IoT_Summit_Lab/Software_Sensor
