@@ -9,7 +9,7 @@
 toc::[]
 
 == Overview
-Intelligent IoT Gateway is the core pillar of enterprise Internet of Things (IoT) architecture because it enables real time  decision-making at the edge, secures downstream devices and optimizes network utilization. In this lab, you'll learn how to build the Intelligent IoT Gateway with an Arm 64 platform - for this lab we used APM's Mustang platform.
+Intelligent IoT Gateway is a key component of enterprise Internet of Things (IoT) as it enables real time  decision-making at the edge, secures downstream devices and optimizes network utilization. In this lab, you'll learn how to build the Intelligent IoT Gateway with an Arm 64 platform - for this lab we used APM's Mustang platform but any other Arm 64 platform with RHEL should work as well. KEy components of the Gateway are:
 
 * *Red Hat Enterprise Linux Developer Preview for Arm* to provide Enterprise class foundation
 * *JBOSS Fuse* to transform sensor data and route it to end points
@@ -20,22 +20,18 @@ Intelligent IoT Gateway is the core pillar of enterprise Internet of Things (IoT
 The first part of this lab is to install required software (Maven, JDK). Once the Gateway is provisioned, we'll put it into action by starting JBOSS Fuse, building & deploying the pre-built routing and business rules services. We'll then start sensor app that sends temperature data using MQTT to the JBOSS A-MQ broker. These messages will be forwarded to the services that we started earlier. Finally, we'll be creating the business rules to trigger desired action when the sensor value reaches a threshold. 
 
 === Requirements
+- Install Red Hat Enterprise Linux 7.3 Developer Preview for Arm
 - Download JBOSS Fuse 6.2.1 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it in the Downloads folder
 
 === Step 1 - Prepare the system
 
-We'll use the automation tool Ansible to remotely provision our Gateway system by installing required components.
+Enable the required repos and install maven:
 
  * Open a terminal and enter the following commands:
-  
-  
-
-=== Step 2 - Login to the Gateway
-
- username = 'demo-user'
- password = 'change12_me'
+ [demo-user@localhost ~]$ subscription-manager repos --enable=rhel-7-for-arm-optional-rpms
+ [demo-user@localhost ~]$ sudo yum install maven
  
-=== Step 3 - Start JBoss Fuse Server
+=== Step 2 - Start JBoss Fuse Server
 
  * Open a new shell and enter the following commands:
 
@@ -53,14 +49,10 @@ Red Hat JBoss Fuse needs to install the 'camel-mqtt' OSGi features to process MQ
 
  JBossFuse:karaf@root> features:install camel-mqtt
 
-* Minimize this shell to keep JBOSS Fuse server running in the background
-
-image:images/minimize_fuse.png[]
-
-=== Step 4 - Build and Deploy Camel Route
+=== Step 3 - Build and Deploy Camel Route
 The sensor data will be transformed and routed by a camel route provided in this project. Now we need to build the Red Hat JBoss Fuse project and deploy it to our running JBoss Fuse server. We’ll use the provided script to build and deploy the project.
 
- * In a terminal, perform the following commands
+ * In a new terminal, perform the following commands
 
  [demo-user@iotlab Software_Sensor]$ cd
  [demo-user@iotlab ~]$ cd IoT_Summit_Lab/
