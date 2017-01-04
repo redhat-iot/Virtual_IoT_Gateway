@@ -51,6 +51,15 @@ Red Hat JBoss Fuse needs to install the 'camel-mqtt' OSGi features to process MQ
 * Enter the following simple command on the 'JBossFuse' command prompt
 
  JBossFuse:karaf@root> features:install camel-mqtt
+ 
+ === Step 3 - Build Software Sensor
+For this lab, we’ll be using a software sensor that simulates a physical sensor. Defined by a few environment variables, software sensor creates random values and sends these to a MQTT Broker for further processing.
+
+To be able to run the Software Sensor, it has to be built from the source files.
+ * Open a new shell and enter the following commands:
+ 
+[demo-user@iotlab IoT_Summit_Lab]$ cd Software_Sensor/
+[demo-user@iotlab Software_Sensor]$ mvn clean install
 
 === Step 3 - Build and Deploy Camel Route
 The sensor data will be transformed and routed by a camel route provided in this project. Now we need to build the Red Hat JBoss Fuse project and deploy it to our running JBoss Fuse server. We’ll use the provided script to build and deploy the project.
@@ -63,57 +72,14 @@ The sensor data will be transformed and routed by a camel route provided in this
 
 **We can verify that the Camel route has been deployed by logging into JBOSS Fuse admin cosole https://github.com/ishuverma/Virtual-IoT_Summit_Lab/tree/Virtual-Lab-1/RoutingService#verify-that-the-camel-route-has-been-deployed[see details]**
 
-=== Step 5 - Create Business Rules
-One of the important functions of Intelligent IoT Gateway is trigger action if the sensor data meets certain condition defined by business rules. In this section we’ll learn how to create business rules service.  This service will work the following way:
+=== Step 6: Build and Run the *Business Rules Service*
+One of the important functions of Intelligent IoT Gateway is trigger action if the sensor data meets certain condition defined by business rules. We've a business rules service that ensures:
 
 1. Sensor data is read from a Message queue
 2. Sensor data is handed over to the rules execution engine that triggers action per defined rules 
 3. Altered data is placed into another defined Message queue
 
-We'll use MS Excel based decision table to define the business rules. The following image shows an example of a Decision Table where each row represents a rule. The blue columns are 'conditions' and the yellow column define an 'action'.
-
-image:images/DecisionTable.png[]
-
-
-Rules syntax is pretty simple: 
-If
-   some condition
-then
-   some action
-   
-The rules system is capable of reading the rules from a spreadsheet  and compile them into rules in the above syntax.  For this lab, sample business rule spreadsheet is provided that can be used to create new rules. 
-
-The columns in this table represent the following:
-
-_Alerting Rule: Name of the rule. It is optional field but very useful for debugging_
-
-_Device Type: Type of device reported by the sensor_
-
-_Payload: Number-range this rule will need to match with_
-
-_Result: Action triggered by the rule i.e. changing value to 0 or 1_
- 
- * Open the sample rules spreadsheet: 'DecisionTable.xls'
-
-image:images/editRules.png[]
-
- * Create two rules by filling in the following information 
-
-- Rule 1: If we get a temperature reading between 0 and 60, change the result field to 0
-- Rule 2: If we get a temperature reading between 61 and 100, change the result field to 1
-
-_Note: In the 2nd rule Payload, add a space between “61,” and “100”_
-
-image:images/sampleRule.png[]
-
-
-_Note: Save the spreadsheet in MS Excel format_
-
-*The details on the Business Rules Service are https://github.com/ishuverma/Virtual_IoT_Gateway/tree/Virtual-Lab-1/BusinessRulesService[here]*
-
-=== Step 6: Build and Run the *Business Rules Service*
-Now that we have added a few rules to our decision table, we need to build
-a new version of the service and start it.
+Lets build a new version of the service and start it.
 
  * Enter the following commands in a terminal
 
@@ -170,5 +136,3 @@ _Note: Fuse console login/password is admin/change12_me_
 image:images/testResult.png[]
 
 *--------------------- End of Lab ---------------------*
-
-image:images/BuildingGWLab.png[link="https://vimeo.com/186218203"]
