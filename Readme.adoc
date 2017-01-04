@@ -59,7 +59,7 @@ For this lab, we’ll be using a software sensor that simulates a physical senso
 
 To be able to run the Software Sensor, it has to be built from the source files.
 
- * Open a new shell and enter the following commands:
+ * Open a new terminal and enter the following commands:
  
  [demo-user@iotlab IoT_Summit_Lab]$ cd Software_Sensor/
  [demo-user@iotlab Software_Sensor]$ mvn clean install
