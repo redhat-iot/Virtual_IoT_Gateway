@@ -1,50 +1,34 @@
-= Build Intelligent IoT Gateway in a Few Easy Steps
+= Build Intelligent IoT Gateway for Arm 64 based Platforms
 
 :Author:    Patrick Steiner, Ishu Verma
 :Email:     psteiner@redhat.com, iverma@redhat.com
-:Date:      09/14/2016
+:Date:      01/05/2017
 
 :toc: macro
 
 toc::[]
 
 == Overview
-Intelligent IoT Gateway is the core pillar of enterprise Internet of Things (IoT) architecture because it enables real time  decision-making at the edge, secures downstream devices and optimizes network utilization. In this lab, you'll learn how to build the Intelligent IoT Gateway with open source software in a few simple steps. 
+Intelligent IoT Gateway is the core pillar of enterprise Internet of Things (IoT) architecture because it enables real time  decision-making at the edge, secures downstream devices and optimizes network utilization. In this lab, you'll learn how to build the Intelligent IoT Gateway with an Arm 64 platform - for this lab we used APM's Mustang platform.
 
-This Gateway can be implemented on a physical hardware (x84 64 bit) or a virtual machine running RHEL 7.2. The main components of the Gateway are:
-
-* *Red Hat Enterprise Linux* to provide Enterprise class foundation
+* *Red Hat Enterprise Linux Developer Preview for Arm* to provide Enterprise class foundation
 * *JBOSS Fuse* to transform sensor data and route it to end points
 * *JBOSS BRMS* to enable real-time decision making at the edge
 * *JBOSS A-MQ* to arbitrate sensor data
 
 
-The task of configuring the gateway system including installing required software is automated through Ansible. Once the Gateway is provisioned, we'll put it into action by starting JBOSS Fuse, building & deploying the pre-built routing and business rules services. We'll then start sensor app that sends temperature data using MQTT to the JBOSS A-MQ broker. These messages will be forwarded to the services that we started earlier. Finally, we'll be creating the business rules to trigger desired action when the sensor value reaches a threshold. 
+The first part of this lab is to install required software (Maven, JDK). Once the Gateway is provisioned, we'll put it into action by starting JBOSS Fuse, building & deploying the pre-built routing and business rules services. We'll then start sensor app that sends temperature data using MQTT to the JBOSS A-MQ broker. These messages will be forwarded to the services that we started earlier. Finally, we'll be creating the business rules to trigger desired action when the sensor value reaches a threshold. 
 
 === Requirements
-- *Host System*: Ansible
-- *Gateway*: Download JBOSS Fuse 6.2.1 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it in the Downloads folder
+- Download JBOSS Fuse 6.2.1 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it in the Downloads folder
 
-=== Step 1 - Prepare the system using Ansible
+=== Step 1 - Prepare the system
 
 We'll use the automation tool Ansible to remotely provision our Gateway system by installing required components.
 
  * Open a terminal and enter the following commands:
   
-  [user@localhost ~]$ git clone -b Virtual-Lab-1-Host https://github.com/RedHat-IoT/Virtual_IoT_Gateway.git
- 
- * Update the host file [Virtual-IoT-Gateway/Ansible/host] with IP address of the Gateway and place the public key of the host on the remote Gateway (Ansible uses ssh to communicate with remote system). You can learn how to setup Ansible https://github.com/redhat-iot/Virtual_IoT_Gateway/tree/Virtual-Lab-1-Host/Ansible[here].
-
-_Note: For the Gateway, we're using username = 'demo-user' and password = 'change12_me'._
-
- * Update the Ansible playbook BuildGW file [Virtual-IoT-Gateway/Ansible/BuildGW] for the username for your gateway: *set_fact: user='user name'*
-
- * Launch the Ansible playbook by entering the following commands:
   
-  [user@localhost ~]$ cd Virtual_IoT_Gateway/Ansible
-  [user@localhost ~]$ ansible-playbook BuildGW
-  
-*Let the Ansible run through the tasks in the playbook. Once Ansible is finished, we're ready to start work directly on the Gateway*
 
 === Step 2 - Login to the Gateway
 
