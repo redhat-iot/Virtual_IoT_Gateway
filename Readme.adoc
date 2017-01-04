@@ -25,13 +25,16 @@ The first part of this lab is to install required software (Maven, JDK). Once th
 
 === Step 1 - Prepare the system
 
-Enable the required repos and install maven:
+Enable the required repos, install maven, install fuse and clone the project:
 
  * Open a terminal and enter the following commands:
  [demo-user@localhost ~]$ subscription-manager repos --enable=rhel-7-for-arm-optional-rpms
  [demo-user@localhost ~]$ sudo yum install maven
+ [demo-user@localhost ~]$ unzip Downloads/jboss-fuse-full-6.2.1.redhat-084.zip
+ [demo-user@localhost ~]$ ln -s jboss-fuse-6.2.1.redhat-084 fuse
+ [demo-user@localhost ~]$ git clone -b Arm-64-Platform https://github.com/ishuverma/Virtual_IoT_Gateway
  
-=== Step 2 - Start JBoss Fuse Server
+=== Step 3 - Start JBoss Fuse Server
 
  * Open a new shell and enter the following commands:
 
