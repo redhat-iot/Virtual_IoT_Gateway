@@ -61,8 +61,8 @@ To be able to run the Software Sensor, it has to be built from the source files.
 
  * Open a new shell and enter the following commands:
  
-[demo-user@iotlab IoT_Summit_Lab]$ cd Software_Sensor/
-[demo-user@iotlab Software_Sensor]$ mvn clean install
+ [demo-user@iotlab IoT_Summit_Lab]$ cd Software_Sensor/
+ [demo-user@iotlab Software_Sensor]$ mvn clean install
 
 === Step 4 - Build and Deploy Camel Route
 
