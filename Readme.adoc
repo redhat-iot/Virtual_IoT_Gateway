@@ -53,7 +53,7 @@ Red Hat JBoss Fuse needs to install the 'camel-mqtt' OSGi features to process MQ
 
  JBossFuse:karaf@root> features:install camel-mqtt
  
- === Step 3 - Build Software Sensor
+=== Step 3 - Build Software Sensor
  
 For this lab, we’ll be using a software sensor that simulates a physical sensor. Defined by a few environment variables, software sensor creates random values and sends these to a MQTT Broker for further processing.
 
