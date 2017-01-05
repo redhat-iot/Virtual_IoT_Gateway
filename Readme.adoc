@@ -1,35 +1,47 @@
-= Build Intelligent IoT Gateway for Arm 64 based Platforms
+= Build Intelligent IoT Gateway in a Few Easy Steps
 
 :Author:    Patrick Steiner, Ishu Verma
 :Email:     psteiner@redhat.com, iverma@redhat.com
-:Date:      01/05/2017
+:Date:      09/14/2016
 
 :toc: macro
 
 toc::[]
 
 == Overview
-Intelligent IoT Gateway is a key component of enterprise Internet of Things (IoT) as it enables real time  decision-making at the edge, secures downstream devices and optimizes network utilization. In this lab, you'll learn how to build the Intelligent IoT Gateway with an Arm 64 platform - for this lab we used APM's Mustang platform but any other Arm 64 platform with RHEL should work as well. KEy components of the Gateway are:
+Intelligent IoT Gateway is the core pillar of enterprise Internet of Things (IoT) architecture because it enables real time  decision-making at the edge, secures downstream devices and optimizes network utilization. In this lab, you'll learn how to build the Intelligent IoT Gateway with open source software in a few simple steps. 
 
-* *Red Hat Enterprise Linux Developer Preview for Arm* to provide Enterprise class foundation
-* *JBOSS Fuse* to transform sensor data and route it to end points
-* *JBOSS BRMS* to enable real-time decision making at the edge
-* *JBOSS A-MQ* to arbitrate sensor data
-
-
-The first part of this lab is to install required software (Maven, JDK). Once the Gateway is provisioned, we'll put it into action by starting JBOSS Fuse, building & deploying the pre-built routing and business rules services. We'll then start sensor app that sends temperature data using MQTT to the JBOSS A-MQ broker. These messages will be forwarded to the services that we started earlier. Finally, we'll be creating the business rules to trigger desired action when the sensor value reaches a threshold. 
+This Gateway can be implemented on a physical hardware (x84 64 bit) or a virtual machine running RHEL 7.2. The JBOSS Fuse uses camel to  transform and route the sensor data. While JBOSS BRMS allows real-time decision making at the edge per defined business rules. The task of configuring the system including installing required software is automated through Ansible.
 
 === Requirements
+- *Host System*: Ansible
+- *Gateway*: Download JBOSS Fuse 6.2.1 from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal] and save it in the Downloads folder
 
+=== Step 1 - Prepare the system using Ansible
 
-=== Step 1 - Prepare the system
-
-Enable the required repos, install maven, install fuse and clone the project:
+We'll use the automation tool Ansible to remotely provision our Gateway system by installing required components.
 
  * Open a terminal and enter the following commands:
-
+  
+  [user@localhost ~]$ git clone -b Virtual-Lab-1 https://github.com/IshuVerma/Virtual_IoT_Gateway.git
  
-=== Step 2 - Start JBoss Fuse Server
+ * Update the host file [Virtual-IoT-Gateway/Ansible/host] with IP address of the Gateway and place the public key of the host on the remote Gateway (For instructions look https://github.com/ishuverma/Virtual_IoT_Gateway/tree/Virtual-Lab-1/Ansible[here])
+
+_Note: For the Gateway, we're using username = 'demo-user' and password = 'change12_me'. Please update the playbook with the  username/password for your Gateway_
+ 
+ * Launch the Ansible playbook by entering the following commands:
+  
+  [user@localhost ~]$ cd Virtual_IoT_Gateway/Ansible
+  [user@localhost ~]$ ansible-playbook BuildGW
+  
+*Let the Ansible run through the tasks in the playbook. Once Ansible is finished, we're ready to start work directly on the Gateway*
+
+=== Step 2 - Login to the Gateway
+
+ username = 'demo-user'
+ password = 'change12_me'
+ 
+=== Step 3 - Start JBoss Fuse Server
 
  * Open a new shell and enter the following commands:
 
@@ -41,28 +53,20 @@ Enable the required repos, install maven, install fuse and clone the project:
 
 image:images/fuse_started.png[]
 
-Red Hat JBoss Fuse needs to install the 'camel-mqtt' OSGi features to process MQTT messages. 
-
-* Enter the following simple command on the 'JBossFuse' command prompt
+* To be able to process MQTT messages, Red Hat JBoss Fuse needs to install the
+'camel-mqtt' OSGi features. To to this, enter the following simple command on the
+'JBossFuse' command prompt
 
  JBossFuse:karaf@root> features:install camel-mqtt
- 
-=== Step 3 - Build Software Sensor
- 
-For this lab, we’ll be using a software sensor that simulates a physical sensor. Defined by a few environment variables, software sensor creates random values and sends these to a MQTT Broker for further processing.
 
-To be able to run the Software Sensor, it has to be built from the source files.
+* Minimize this shell to keep JBOSS Fuse server running in the background
 
- * Open a new terminal and enter the following commands:
- 
- [demo-user@iotlab IoT_Summit_Lab]$ cd Software_Sensor/
- [demo-user@iotlab Software_Sensor]$ mvn clean install
+image:images/minimize_fuse.png[]
 
 === Step 4 - Build and Deploy Camel Route
-
 The sensor data will be transformed and routed by a camel route provided in this project. Now we need to build the Red Hat JBoss Fuse project and deploy it to our running JBoss Fuse server. We’ll use the provided script to build and deploy the project.
 
- * In a new terminal, perform the following commands
+ * In a terminal, perform the following commands
 
  [demo-user@iotlab Software_Sensor]$ cd
  [demo-user@iotlab ~]$ cd IoT_Summit_Lab/
@@ -70,16 +74,53 @@ The sensor data will be transformed and routed by a camel route provided in this
 
 **We can verify that the Camel route has been deployed by logging into JBOSS Fuse admin cosole https://github.com/ishuverma/Virtual-IoT_Summit_Lab/tree/Virtual-Lab-1/RoutingService#verify-that-the-camel-route-has-been-deployed[see details]**
 
-=== Step 5: Build and Run the *Business Rules Service*
-One of the important functions of Intelligent IoT Gateway is trigger action if the sensor data meets certain condition defined by business rules. We've a business rules service that ensures:
+=== Step 5 - Create Business Rules
+One of the important functions of Intelligent IoT Gateway is trigger action if the sensor data meets certain condition defined by business rules. In this section we’ll learn how to create business rules service.  This service will work the following way:
 
-1. Sensor data is read from a Message queue
-2. Sensor data is handed over to the rules execution engine that triggers action per defined rules 
-3. Altered data is placed into another defined Message queue
+- Sensor data is read from a Message queue
+- Sensor data is handed over to the rules execution engine that triggers action per defined rules 
+- Altered data is placed into another defined Message queue
 
-Lets build a new version of the service and start it.
+We'll use MS Excel based decision table to define the business rules. The following image shows an example of a Decision Table where each row represents a rule. The blue columns are 'conditions' and the yellow column define an 'action'.
 
- * Enter the following commands in a terminal
+image:BusinessRulesService/images/DecisionTable.png[]
+
+Rules syntax is pretty simple: 
+If
+   some condition
+then
+   some action
+The rules system is capable of reading the rules from a spreadsheet  and compile them into rules in the above syntax.  For this lab, sample business rule spreadsheet is provided that can be used to create new rules. 
+
+The columns in this table represent the following
+
+ * _Alerting Rule_: Name of the rule. It is optional field but very useful for debugging
+ * _Device Type_: Type of device reported by the sensor
+ * _Payload_: Number-range this rule will need to match with
+ * _Result_: Action triggered by the rule i.e. changing value to 0 or 1
+ 
+**Open the sample rules spreadsheet: 'DecisionTable.xls'**
+
+image:BusinessRulesService/images/editRules.png[]
+
+**Create two rules by filling in the following information** 
+
+- Rule 1: If we get a temperature reading between 0 and 60, change the result field to 0
+- Rule 2: If we get a temperature reading between 61 and 100, change the result field to 1
+
+_Note: In the 2nd rule Payload, add a space between “61,” and “100”_
+
+image:BusinessRulesService/images/sampleRule.png[]
+
+_Note: Save the spreadsheet in MS Excel format_
+
+*The details on the Business Rules Service are https://github.com/ishuverma/Virtual_IoT_Gateway/tree/Virtual-Lab-1/BusinessRulesService[here]*
+
+=== Step 6: Build and Run the *Business Rules Service*
+Now that we have added a few rules to our decision table, we need to build
+a new version of the service and start it.
+
+Enter the following commands in a terminal
 
  [demo-user@localhost IoT_Summit_Lab]$ cd
  [demo-user@localhost ~]$ cd IoT_Summit_Lab/
@@ -96,16 +137,14 @@ It should display following output
  ----------------------
  Sending <?xml version="1.0" encoding="UTF-8" standalone="yes"?><dataSet><timestamp>18.05.2016 10:46:22 766</timestamp><deviceType>temperature</deviceType><deviceID>4711</deviceID><payload>70</payload><required>0</required><average>0.0</average><errorCode>1</errorCode></dataSet>
 
-=== Step 6: Test Rule Service
-We will try this service by sending a test message via the *Software Sensor* to our setup. The following should happen:
+=== Step 7: Test Rule Service
+We will try this service by sending a test message via the *Software Sensor* to our setup. The following should happen.
 
-*Software Sensor* sends a message with a high value via MQTT
-
-*Routing Service* will pick it up, transform the message and send it to an AMQP message queue
-
-*Business Rules Service* will take the transformed message from the queue and will put it in another AMQP message queue, but only if it meets the business rule condition
+ 1. *Software Sensor* sends a message with a high value via MQTT
+ 2. *Routing Service* will pick it up, transform the message and send it to an AMQP message queue.
+ 3. *Business Rules Service* will take the transformed message from the queue and will put it in another AMQP message queue, but only if it meets the business rule condition
  
-
+Enter the following commands in a new terminal
 
  [demo-user@localhost Desktop]$ cd
  [demo-user@localhost ~]$ cd IoT_Summit_Lab/
@@ -126,11 +165,9 @@ It should display following output
  ----------------------
 
 Another way to verify that the message was properly processed is to take a
- look at Red Hat JBoss Fuse console via 'http://<ip address of Arm system>:8181', The count of messages enqueued and dequeued shoud now show that one message has been taken from 'message.to.rules' and placed into 'message.to.datacenter'.
- 
-_Note: Fuse console login/password is admin/change12_me_
+ look at Red Hat JBoss Fuse console via 'http://localhost:8181', The count of messages enqueued and dequeued shoud now show that one message has been taken from 'message.to.rules' and placed into 'message.to.datacenter'.
 
-image:images/testResult.png[]
+image:BusinessRulesService/images/testResult.png[]
 
 Now we can use the `Software Sensor` to create a stream
 of sensordata and will observe the effect our Business Rules from has
