@@ -173,7 +173,7 @@ Now we can use the `Software Sensor` to create a stream
 of sensordata and will observe the effect our Business Rules from has
 on the data.
 
-nter the following commands in a new terminal
+Enter the following commands in a new terminal
 
  [demo-user@iotlab Desktop]$ cd
  [demo-user@iotlab ~]$ cd IoT_Summit_Lab/
