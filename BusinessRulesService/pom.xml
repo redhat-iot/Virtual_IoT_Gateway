@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.redhat.demo.iot</groupId>
+  <version>1.0.0</version>
+  
+  <properties>    
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+      <!-- other plugin versions -->
+      <version.compiler.plugin>2.3.1</version.compiler.plugin>
+      <version.jar.plugin>2.2</version.jar.plugin>
+      <version.exec.plugin>1.1.1</version.exec.plugin>
+
+      <!-- maven-compiler-plugin -->
+      <maven.compiler.target>1.6</maven.compiler.target>
+      <maven.compiler.source>1.6</maven.compiler.source>
+      
+      <version.org.kie>6.3.0.Final-redhat-5</version.org.kie>
+      
+      <version.org.infinispan>6.4.0.Final-redhat-4</version.org.infinispan>
+  </properties>
+  
+   <repositories>
+    	<repository>
+			  <id>jboss-ga-repository</id>
+	          <url>http://maven.repository.redhat.com/techpreview/all</url>
+	          <releases>
+	            	<enabled>true</enabled>
+	          </releases>
+	          <snapshots>
+	            	<enabled>false</enabled>
+	          </snapshots>
+	    </repository>    
+	    <repository>
+	          <id>jboss-public-repository</id>
+	          <url>http://repository.jboss.org/nexus/content/repositories/public/</url>
+	          <releases>
+	            	<enabled>true</enabled>
+	          </releases>
+	          <snapshots>
+	            	<enabled>false</enabled>
+	          </snapshots>
+        </repository>
+        <repository>
+		    <id>paho-mqtt-client</id>
+		    <name>Paho MQTT Client</name>
+		    <url>https://repo.eclipse.org/content/repositories/paho-releases/</url>
+		</repository>
+ 	</repositories>
+  
+  <dependencies>
+  		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-kie-services</artifactId>
+			<version>${version.org.kie}</version>
+		</dependency>
+  
+  		<!-- BPM dependencies -->
+  		<dependency>
+      		<groupId>org.kie.remote</groupId>
+      		<artifactId>kie-remote-client</artifactId>
+      		<version>${version.org.kie}</version>
+    	</dependency>
+  
+  		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-decisiontables</artifactId>
+			<version>${version.org.kie}</version>
+		</dependency>
+  
+  		<!-- activeMQ dependencies. -->
+	    <dependency>
+	  		<groupId>javax.jms</groupId>
+	  		<artifactId>jms</artifactId>
+	  		<version>1.1</version>
+		</dependency>
+		<dependency>
+	  		<groupId>org.apache.activemq</groupId>
+	 		<artifactId>activemq-all</artifactId>
+	  		<version>5.9.0</version>
+		</dependency>
+		
+		<!--  MQTT dependencies  -->
+		<dependency>
+		   <groupId>org.eclipse.paho</groupId>
+		   <artifactId>mqtt-client</artifactId>
+		   <version>0.4.0</version>
+		</dependency>
+		
+		 <!-- Import the infinispan core -->
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-core</artifactId>
+            <version>${version.org.infinispan}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Import the Infinispan client hotrod -->
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-client-hotrod</artifactId>
+            <version>${version.org.infinispan}</version>
+            <scope>compile</scope>
+        </dependency>
+  </dependencies>
+  
+  <build>
+        <finalName>rules</finalName>
+        <plugins>
+            
+            <plugin>
+			    <artifactId>maven-assembly-plugin</artifactId>
+			    <executions>
+			      <execution>
+			        <phase>package</phase>
+			        <goals>
+			          <goal>single</goal>
+			        </goals>
+			      </execution>
+			    </executions>
+			    <configuration>
+			
+			      <archive>
+			      <manifest>
+			        <addClasspath>true</addClasspath>
+			        <mainClass>com.redhat.demo.businessRules.App</mainClass>
+			      </manifest>
+			      </archive>
+			
+			      <descriptorRefs>
+			        <descriptorRef>jar-with-dependencies</descriptorRef>
+			      </descriptorRefs>
+			
+			    </configuration>
+			  </plugin> 
+        </plugins>
+    </build>
+  
+  <artifactId>businessRulesService</artifactId>
+</project>

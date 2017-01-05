@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.redhat.demo.iotdemo</groupId>
+    <artifactId>cloudService</artifactId>
+    <version>1.0.0</version>
+
+    <!-- Tells Maven to create an OSGi bundle; must be paired with maven-bundle-plugin (see below) -->
+    <packaging>bundle</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <camel.version>2.15.1.redhat-621084</camel.version>
+        <kura.version>1.0.7</kura.version>
+        <exec.maven.plugin.version>1.3.2</exec.maven.plugin.version>
+        <felix.maven.bundle.plugin.version>2.5.3</felix.maven.bundle.plugin.version>
+        <maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.resources.plugin.version>2.7</maven.resources.plugin.version>
+
+        <slf4j.version>1.7.10</slf4j.version>
+    </properties>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <!--
+                Adding this plugin as an extension enables packaging=bundle (i.e. osgi bundle).
+                This plugin will automatically add most of the OSGi meta-information to the
+                generated OSGi bundle (jar file with extra entries in META-INF/MANIFEST.MF)
+            -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>${felix.maven.bundle.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Import-Package>*</Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.plugin.version}</version>
+            </plugin>
+
+            <!-- Allows the routes to be run via 'mvn camel:run' -->
+            <plugin>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-maven-plugin</artifactId>
+                <version>${camel.version}</version>
+            </plugin>
+
+            <!-- Allows HelloCamelClient to be run via 'mvn exec:java' -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec.maven.plugin.version}</version>
+                <configuration>
+                    <mainClass>com.fusesource.byexample.hellocamel.impl.HelloCamelClient</mainClass>
+                    <killAfter>-1</killAfter>
+                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-spring</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test-spring</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jetty</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test</artifactId>
+            <version>${camel.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+		<dependency>
+		    <groupId>org.eclipse.kura</groupId>
+		    <artifactId>org.eclipse.kura.api</artifactId>
+		    <version>${kura.version}</version>
+		</dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        
+        	<dependency>
+	      <groupId>org.apache.camel</groupId>
+	      <artifactId>camel-bindy</artifactId>
+	       <version>${camel.version}</version>
+	    </dependency>
+	    
+        <dependency>
+		    <groupId>org.apache.camel</groupId>
+		    <artifactId>camel-mqtt</artifactId>
+		    <version>${camel.version}</version>
+		</dependency>
+    </dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>repo.eclipse.org</id>
+			<name>Kura Repository - Releases</name>
+			<url>https://repo.eclipse.org/content/repositories/kura-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>repo.eclipse.org</id>
+			<name>Kura Repository - Snapshots</name>
+			<url>https://repo.eclipse.org/content/repositories/kura-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+
+    <!--
+        The following maven repository entries allow the project to reference the Fuse
+        version (i.e. x.x.x-fuse-yy-zz) of ServiceMix, ActiveMQ, Camel, and CXF
+    -->
+    <repositories>
+        <repository>
+            <id>release.fusesource.org</id>
+            <name>FuseSource Release Repository</name>
+            <url>http://repo.fusesource.com/nexus/content/repositories/releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>fusesource.ea</id>
+            <name>FuseSource Early Access</name>
+            <url>http://repo.fusesource.com/nexus/content/groups/ea</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+       
+       <repository>
+	 		<id>repo.eclipse.org</id>
+	 		<name>Kura Repository - Releases</name>
+	 		<url>https://repo.eclipse.org/content/repositories/kura-releases/</url>
+		</repository>
+		
+	</repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>release.fusesource.org</id>
+            <name>FuseSource Release Repository</name>
+            <url>http://repo.fusesource.com/nexus/content/repositories/releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+        <pluginRepository>
+            <id>fusesource.ea</id>
+            <name>FuseSource Early Access</name>
+            <url>http://repo.fusesource.com/nexus/content/groups/ea</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
