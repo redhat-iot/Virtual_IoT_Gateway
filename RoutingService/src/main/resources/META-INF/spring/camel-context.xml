@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<!--Helper Bean to extract data from MQTT Topic and and to Message in csv values  -->
+  	<bean id="myHelper" class="com.redhat.demo.iotdemo.routingService.MyHelper" />
+    
+  	<!--Connection to activeMQ Broker running on same system  -->
+  	<bean id="activemqGateway" class="org.apache.activemq.camel.component.ActiveMQComponent" >
+    	<property name="connectionFactory">
+      		<bean class="org.apache.activemq.ActiveMQConnectionFactory">
+        		<property name="brokerURL" value="${SOURCE_AMQ_BROKER}" />
+        		<property name="userName" value="${SOURCE_BROKER_ADMIN_UID}"/>
+        		<property name="password" value="${SOURCE_BROKER_ADMIN_PASSWD}"/>
+      		</bean>
+    	</property>
+  	</bean>
+  	 
+  	<!--Initiate access to properties -->
+  	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+
+ 	<!-- Route from local MQTT-Broker to local JMS Broker --><camelContext xmlns="http://camel.apache.org/schema/spring">
+  <propertyPlaceholder location="classpath:org/apache/camel/component/properties/myprop.properties" id="properties"/>
+  <dataFormats>
+    <bindy type="Csv" classType="com.redhat.demo.iotdemo.routingService.Dataset" id="bindyDataFormat"/>
+  </dataFormats>
+  <route id="messagesFromSensor">
+  <from uri="mqtt:mqtt.temp.receiver?host=tcp://localhost:1883&amp;subscribeTopicNames=iotdemo/#/#&amp;userName=admin&amp;password=change12_me"/>
+    <bean ref="myHelper" method="enhanceMessage" beanType="com.redhat.demo.routingService.MyHelper"/>
+    <unmarshal ref="bindyDataFormat"/>
+    <convertBodyTo type="java.lang.String"/>
+    <to uri="activemqGateway:queue:message.to.rules"/>
+  </route>
+</camelContext>
+
+</beans>

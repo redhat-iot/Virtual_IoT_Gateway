@@ -1,0 +1,184 @@
+= IoT Summit Lab 2016 - Building a VM
+
+:Author:    Patrick Steiner
+:Email:     psteiner@redhat.com
+:Date:      17.05.2016
+
+:toc: macro
+
+toc::[]
+
+== Scope
+This document is intended for those people who would like to perform the
+IoT-Lab, as described in this repository.
+
+The instructions are based on Red Hat Enterprise Linux V7.2 (RHEL) but can easily be
+re-done on other Operatingsystems, if you have the basic skills to install
+software, etc.
+
+In the course of this document, we will assume that you will run RHEL in a VM, but
+bare metal deployments will work as well.
+
+== Pre-Requisite
+You will need to install a RHEL V7.2 with
+
+ * 2 CPUs
+ * 4 GB RAM ( more is always good )
+ * 20GB Storage with
+
+During the installation please select to install the server with GUI.
+
+image:images/install_gui.png[]
+
+For simplicity we will use the default setting for the disk partitions.
+
+image:images/install_hd.png[]
+
+Also make sure that your network is activated.
+
+image:images/install_network.png[]
+
+I usually create a user called "demo-user" with admin rights, but you can call
+your user whatever you want.
+
+image:images/install_user.png[]
+
+After completing the install precedure, register and upgrade your RHEL installation:
+
+
+```
+[demo-user@iotlab Desktop]$ sudo subscription-manager register --username=rhnuser --password=rhnpasswd`
+[demo-user@iotlab Desktop]$ sudo subscription-manager attach --pool=pool_id
+[demo-user@iotlab Desktop]$ sudo yum upgrade
+
+```
+
+
+== Additional Installations
+To be able to run the demo-labs, you will need the following products/packages
+installed:
+
+=== Additional RHEL packages
+To install additional RHEL packages, please perform the following steps
+
+ [demo-user@iotlab Desktop]$ sudo yum -y install java-1.7.0-openjdk-devel wget git unzip
+ [sudo] password for demo-user:
+
+
+ === Installing Maven
+ For the builds to work automatically, we need to install Apache Maven. Please do
+ so by performing the following steps
+
+  [demo-user@iotlab Desktop]$ cd
+  [demo-user@iotlab ~]$ wget http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
+  [demo-user@iotlab ~]$ unzip apache-maven-3.3.9-bin.zip
+  [demo-user@iotlab ~]$ sudo mv apache-maven-3.3.9/ /opt/
+  [demo-user@iotlab ~]$ sudo ln -s /opt/apache-maven-3.3.9/bin/mvn /usr/bin/mvn
+
+Now please create a file called '/etc/profile.d/maven_jdk.sh' with the following content
+
+ #!/bin/bash
+ MAVEN_HOME=/opt/apache-maven-3.3.9
+ PATH=$MAVEN_HOME/bin:$PATH
+ JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk
+ M2_HOME=/opt/apache-maven-3.3.9/
+ export PATH MAVEN_HOME JAVA_HOME M2_HOME
+ export CLASSPATH=.
+
+And again, run the following commands
+
+ [demo-user@iotlab ~]$ sudo chmod +x /etc/profile.d/maven_jdk.sh
+ [demo-user@iotlab ~]$ source /etc/profile.d/maven_jdk.sh
+
+== Download Lab codebase
+
+ Download the Lab codebased by cloning the repository:
+ git clone https://github.com/PatrickSteiner/IoT_Summit_Lab
+
+
+== Getting the Red Hat Products
+
+=== Red Hat JBoss Fuse
+As for the writing of these instructions, Red Hat JBoss Fuse has been released
+in Version 6.2.1
+
+Please download this version from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=jboss.fuse&downloadType=distributions[Red Hat Customer Portal]
+
+image:images/download_fuse.png[]
+
+After downloading it, please place the file 'jboss-fuse-full-6.2.1.redhat-084.zip'
+into the home-directory of your user. In my case the command required is
+
+ [demo-user@iotlab ~]$ mv Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user
+
+=== Red Hat JBoss Developer Studio
+Red Hat JBoss Developer Studio ( JBDS ) in the Eclipse based tooling
+for all JBoss products. It's capabilities can be installed onto an
+existing Eclipse or already bundled.
+
+For this setup, we will download JBDS from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=jbossdeveloperstudio&version=8.1.0[Red Hat Customer Portal],
+but please make sure to download the V8.1
+
+image:images/download_jbds.png[]
+
+Once the download completed, you can run the installer via
+
+ [demo-user@iotlab ~]$ java -jar Downloads/jboss-devstudio-8.1.0.GA-installer-standalone.jar
+
+For simplicity, accept all defaults and let the installer add an icon onto the desktop
+
+image:images/install_jbds.png[]
+
+Run JBDS after the installation completed
+
+image:images/start_jbds.png[]
+
+You can, again, accept the defaults for the proposed Eclipse 'workspace'.
+
+It is up to you, if you want to let Red Hat receive usage statistics or not.
+
+image:images/start_workspace.png[]
+
+Once JBDS has fully started and the 'workspace' is shown, you will have to
+switch to the panel to install additional software into JBDS
+
+image:images/jbds_software_updates.png[]
+
+Select *JBoss Fuse Development* for installation.
+
+image:images/jbds_install_tooling.png[]
+
+After installing the Tooling and restarting JBDS, you can import the source
+projects for the labs, to do so, perform the following steps
+
+ * Open the 'Import' wizard of JBDS
+
+image:images/import_1.png[]
+
+ * Select 'Existing Maven Project' as import source
+
+image:images/import_2.png[]
+
+ * Select the '/home/demo-user/IoT_Summit_Lab/RoutingService' directory
+
+image:images/import_3.png[]
+
+ * Have patience or a cup of coffee, as JBDS downloads a lot of Maven dependencies for you.
+
+ * Re-Do the same steps for the project in '/home/demo-user/IoT_Summit_Lab/BusinessRulesService'
+
+== Installing LibreOffice
+For the MS Excel based decision table, we need some kind of spreadsheet
+application. We have chosen to go for *LibreOffice* but any other application
+capable of reading and writing MS Excel is OK.
+
+To install *LibreOffice* please perform the following commands
+
+ [demo-user@iotlab IoT_Summit_Lab]$ cd
+ [demo-user@iotlab ~]$ wget http://download.documentfoundation.org/libreoffice/stable/5.1.3/rpm/x86_64/LibreOffice_5.1.3_Linux_x86-64_rpm.tar.gz
+ [demo-user@iotlab ~]$ tar -xvf LibreOffice_5.1.3_Linux_x86-64_rpm.tar.gz
+ [demo-user@iotlab ~]$ cd LibreOffice_5.1.3.2_Linux_x86-64_rpm/RPMS/
+ [demo-user@iotlab RPMS]$ sudo yum localinstall *.rpm
+
+
+*Now you are ready to proceed with the Labs! Have fun!*
