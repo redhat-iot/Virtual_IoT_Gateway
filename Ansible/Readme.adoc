@@ -17,7 +17,7 @@ _Note: You may need to add epel repo or download the download the rpm from http:
 If you need to generate the ssh key first:
 
   [user@localhost ~]$ ssh-keygen -t rsa
-  [user@localhost ~]$ ssh-copy-id -i ~/.ssh/id_rsa.pub user@hostname
+  [user@localhost ~]$ ssh-copy-id -i ~/.ssh/id_rsa.pub root@remote-ip-address
 
 Store the key to avoid retyping password:
 
